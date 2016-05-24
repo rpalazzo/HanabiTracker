@@ -129,6 +129,9 @@ public class TrackerActivity extends AppCompatActivity {
         c.setSuit(com.rpalazzo.hanabitracker.Card.Color.UNKNOWN);
         cardArrayList.add(c);
 
+        clueSelection = CLUE_SELECTION.NONE;
+        currentSelection = SELECTION.NONE;
+
         paint();
     }
 
