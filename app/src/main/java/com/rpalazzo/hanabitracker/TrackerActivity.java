@@ -39,10 +39,10 @@ public class TrackerActivity extends AppCompatActivity {
     private ImageButton buttonClueMulticolor;
 
 
-    public enum SELECTION {
+    public enum SELECTION_MODE {
         NONE, CARD, CLUE
     }
-    private SELECTION currentSelection;
+    private SELECTION_MODE currentSelectionMode;
 
     public enum CLUE_SELECTION {
         NONE, ONE, TWO, THREE, FOUR, FIVE, RED, YELLOW, BLUE, WHITE, GREEN, MULTICOLOR
@@ -90,7 +90,7 @@ public class TrackerActivity extends AppCompatActivity {
             cardArrayList.add(c);
         }
 
-        currentSelection = SELECTION.NONE;
+        currentSelectionMode = SELECTION_MODE.NONE;
         clueSelection = CLUE_SELECTION.NONE;
 
         buttonCard1 = (ImageButton)findViewById(R.id.button_card1);
@@ -130,7 +130,7 @@ public class TrackerActivity extends AppCompatActivity {
         cardArrayList.add(c);
 
         clueSelection = CLUE_SELECTION.NONE;
-        currentSelection = SELECTION.NONE;
+        currentSelectionMode = SELECTION_MODE.NONE;
 
         paint();
     }
@@ -142,25 +142,25 @@ public class TrackerActivity extends AppCompatActivity {
     public void onCard5(View view) { onCard(4); }
 
     private void onCard(int index) {
-        if (currentSelection == SELECTION.NONE || currentSelection == SELECTION.CARD) {
+        if (currentSelectionMode == SELECTION_MODE.NONE || currentSelectionMode == SELECTION_MODE.CARD) {
             if (cardArrayList.get(index).getSelected() == Boolean.TRUE)
             {
                 cardArrayList.get(index).setSelected(Boolean.FALSE);
 
-                //a card was unselected, if any cards are still currentSelection then SELECTION.CARD
-                currentSelection = SELECTION.NONE;
+                //a card was unselected, if any cards are still currentSelectionMode then SELECTION_MODE.CARD
+                currentSelectionMode = SELECTION_MODE.NONE;
                 for (int j = 0; j < 5; j++) {
                     if (cardArrayList.get(j).getSelected() == Boolean.TRUE) {
-                        currentSelection = SELECTION.CARD;
+                        currentSelectionMode = SELECTION_MODE.CARD;
                     }
                 }
             }
             else {
                 cardArrayList.get(index).setSelected(Boolean.TRUE);
-                currentSelection = SELECTION.CARD;
+                currentSelectionMode = SELECTION_MODE.CARD;
             }
         }
-        else { // currentSelection == SELECTION.CLUE
+        else { // currentSelectionMode == SELECTION_MODE.CLUE
             switch (clueSelection){
                 case ONE:
                     cardArrayList.get(index).setRank(1);
@@ -219,17 +219,17 @@ public class TrackerActivity extends AppCompatActivity {
         // if the currently selected clue is selected again; deselect it
         if (clueSelection == clue) {
             clueSelection = CLUE_SELECTION.NONE;
-            currentSelection = SELECTION.NONE;
+            currentSelectionMode = SELECTION_MODE.NONE;
         }
 
         // else if no clue or different clue selected, select that clue
-        else if (currentSelection == SELECTION.NONE || currentSelection == SELECTION.CLUE) {
-            currentSelection = SELECTION.CLUE;
+        else if (currentSelectionMode == SELECTION_MODE.NONE || currentSelectionMode == SELECTION_MODE.CLUE) {
+            currentSelectionMode = SELECTION_MODE.CLUE;
             clueSelection = clue;
         }
 
         // else assign this clue to all currrently selected cards
-        else { // SELECTION.CARD
+        else { // SELECTION_MODE.CARD
             for (int i = 0; i < 5; i++) {
                 if (cardArrayList.get(i).getSelected() == Boolean.TRUE) {
                     if (clue == CLUE_SELECTION.RED ||
@@ -281,7 +281,7 @@ public class TrackerActivity extends AppCompatActivity {
                 }
                 cardArrayList.get(i).setSelected(Boolean.FALSE);
             }
-            currentSelection = SELECTION.NONE;
+            currentSelectionMode = SELECTION_MODE.NONE;
         }
         paint();
     }
