@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.rpalazzo.hanabitracker.MainActivity">
+
+
+    <include layout="@layout/content_main" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/no_cards_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_cards_prompt"
+            android:textAppearance="?android:attr/textAppearanceMedium">
+        </TextView>
+
+        <Spinner
+            android:id="@+id/CardsSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/no_cards"
+            android:prompt="@string/no_cards_prompt" />
+
+        <TextView
+            android:id="@+id/multicolor_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/multicolor_prompt"
+            android:textAppearance="?android:attr/textAppearanceMedium">
+        </TextView>
+
+        <Spinner
+            android:id="@+id/MulticolorSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/multicolor_mode"
+            android:prompt="@string/multicolor_prompt"/>
+
+        <Button
+            android:id="@+id/StartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            android:onClick="onStartButton" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
