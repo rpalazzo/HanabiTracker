@@ -22,6 +22,7 @@
         <activity
             android:name=".TrackerActivity"
             android:label="@string/title_activity_tracker"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
