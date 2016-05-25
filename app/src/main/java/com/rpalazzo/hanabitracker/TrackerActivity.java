@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 
 import java.util.ArrayList;
@@ -37,6 +38,12 @@ public class TrackerActivity extends AppCompatActivity {
     private ImageButton buttonClueWhite;
     private ImageButton buttonClueGreen;
     private ImageButton buttonClueMulticolor;
+
+    private TextView textViewNeg1;
+    private TextView textViewNeg2;
+    private TextView textViewNeg3;
+    private TextView textViewNeg4;
+    private TextView textViewNeg5;
 
 
     public enum SELECTION_MODE {
@@ -98,6 +105,11 @@ public class TrackerActivity extends AppCompatActivity {
         buttonCard3 = (ImageButton)findViewById(R.id.button_card3);
         buttonCard4 = (ImageButton)findViewById(R.id.button_card4);
         buttonCard5 = (ImageButton)findViewById(R.id.button_card5);
+        textViewNeg1 = (TextView) findViewById(R.id.text_negative1);
+        textViewNeg2 = (TextView) findViewById(R.id.text_negative2);
+        textViewNeg3 = (TextView) findViewById(R.id.text_negative3);
+        textViewNeg4 = (TextView) findViewById(R.id.text_negative4);
+        textViewNeg5 = (TextView) findViewById(R.id.text_negative5);
         buttonClue1 = (ImageButton)findViewById(R.id.button_clue1);
         buttonClue2 = (ImageButton)findViewById(R.id.button_clue2);
         buttonClue3 = (ImageButton)findViewById(R.id.button_clue3);
@@ -163,36 +175,70 @@ public class TrackerActivity extends AppCompatActivity {
         else { // currentSelectionMode == SELECTION_MODE.CLUE
             switch (clueSelection){
                 case ONE:
+                    // Set all cards to NOT this value.  Those of this value won't display it anyway.
+                    for (int j = 0; j < 5; j++) {
+                        cardArrayList.get(j).setNotOne(Boolean.TRUE);
+                    }
                     cardArrayList.get(index).setRank(1);
                     break;
                 case TWO:
+                    for (int j = 0; j < 5; j++) {
+                        cardArrayList.get(j).setNotTwo(Boolean.TRUE);
+                    }
                     cardArrayList.get(index).setRank(2);
                     break;
                 case THREE:
+                    for (int j = 0; j < 5; j++) {
+                        cardArrayList.get(j).setNotThree(Boolean.TRUE);
+                    }
                     cardArrayList.get(index).setRank(3);
                     break;
                 case FOUR:
+                    for (int j = 0; j < 5; j++) {
+                        cardArrayList.get(j).setNotFour(Boolean.TRUE);
+                    }
                     cardArrayList.get(index).setRank(4);
                     break;
                 case FIVE:
+                    for (int j = 0; j < 5; j++) {
+                        cardArrayList.get(j).setNotFive(Boolean.TRUE);
+                    }
                     cardArrayList.get(index).setRank(5);
                     break;
                 case RED:
+                    for (int j = 0; j < 5; j++) {
+                        cardArrayList.get(j).setNotRed(Boolean.TRUE);
+                    }
                     cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.RED);
                     break;
                 case YELLOW:
+                    for (int j = 0; j < 5; j++) {
+                        cardArrayList.get(j).setNotYellow(Boolean.TRUE);
+                    }
                     cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.YELLOW);
                     break;
                 case BLUE:
+                    for (int j = 0; j < 5; j++) {
+                        cardArrayList.get(j).setNotBlue(Boolean.TRUE);
+                    }
                     cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.BLUE);
                     break;
                 case WHITE:
+                    for (int j = 0; j < 5; j++) {
+                        cardArrayList.get(j).setNotWhite(Boolean.TRUE);
+                    }
                     cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.WHITE);
                     break;
                 case GREEN:
+                    for (int j = 0; j < 5; j++) {
+                        cardArrayList.get(j).setNotGreen(Boolean.TRUE);
+                    }
                     cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.GREEN);
                     break;
                 case MULTICOLOR:
+                    for (int j = 0; j < 5; j++) {
+                        cardArrayList.get(j).setNotMulticolor(Boolean.TRUE);
+                    }
                     cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.MULTICOLOR);
                     break;
             }
@@ -232,51 +278,78 @@ public class TrackerActivity extends AppCompatActivity {
         else { // SELECTION_MODE.CARD
             for (int i = 0; i < 5; i++) {
                 if (cardArrayList.get(i).getSelected() == Boolean.TRUE) {
-                    if (clue == CLUE_SELECTION.RED ||
-                            clue == CLUE_SELECTION.BLUE ||
-                            clue == CLUE_SELECTION.YELLOW ||
-                            clue == CLUE_SELECTION.WHITE ||
-                            clue == CLUE_SELECTION.GREEN ||
-                            clue == CLUE_SELECTION.MULTICOLOR) {
-                        switch (clue) {
-                            case RED:
-                                cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.RED);
-                                break;
-                            case YELLOW:
-                                cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.YELLOW);
-                                break;
-                            case BLUE:
-                                cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.BLUE);
-                                break;
-                            case WHITE:
-                                cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.WHITE);
-                                break;
-                            case GREEN:
-                                cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.GREEN);
-                                break;
-                            case MULTICOLOR:
-                                cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.MULTICOLOR);
-                                break;
-                        }
+
+                    switch (clue) {
+                        case RED:
+                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.RED);
+                            break;
+                        case YELLOW:
+                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.YELLOW);
+                            break;
+                        case BLUE:
+                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.BLUE);
+                            break;
+                        case WHITE:
+                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.WHITE);
+                            break;
+                        case GREEN:
+                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.GREEN);
+                            break;
+                        case MULTICOLOR:
+                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.MULTICOLOR);
+                            break;
+                        case ONE:
+                            cardArrayList.get(i).setRank(1);
+                            break;
+                        case TWO:
+                            cardArrayList.get(i).setRank(2);
+                            break;
+                        case THREE:
+                            cardArrayList.get(i).setRank(3);
+                            break;
+                        case FOUR:
+                            cardArrayList.get(i).setRank(4);
+                            break;
+                        case FIVE:
+                            cardArrayList.get(i).setRank(5);
+                            break;
                     }
-                    else{
-                        switch (clue) {
-                            case ONE:
-                                cardArrayList.get(i).setRank(1);
-                                break;
-                            case TWO:
-                                cardArrayList.get(i).setRank(2);
-                                break;
-                            case THREE:
-                                cardArrayList.get(i).setRank(3);
-                                break;
-                            case FOUR:
-                                cardArrayList.get(i).setRank(4);
-                                break;
-                            case FIVE:
-                                cardArrayList.get(i).setRank(5);
-                                break;
-                        }
+                }
+                else {  // i-th card is NOT selected; set negative info
+                    switch (clue) {
+                        case RED:
+                            cardArrayList.get(i).setNotRed(Boolean.TRUE);
+                            break;
+                        case YELLOW:
+                            cardArrayList.get(i).setNotYellow(Boolean.TRUE);
+                            break;
+                        case BLUE:
+                            cardArrayList.get(i).setNotBlue(Boolean.TRUE);
+                            break;
+                        case WHITE:
+                            cardArrayList.get(i).setNotWhite(Boolean.TRUE);
+                            break;
+                        case GREEN:
+                            cardArrayList.get(i).setNotGreen(Boolean.TRUE);
+                            break;
+                        case MULTICOLOR:
+                            cardArrayList.get(i).setNotMulticolor(Boolean.TRUE);
+                            break;
+                        case ONE:
+                            cardArrayList.get(i).setNotOne(Boolean.TRUE);
+                            break;
+                        case TWO:
+                            cardArrayList.get(i).setNotTwo(Boolean.TRUE);
+                            break;
+                        case THREE:
+                            cardArrayList.get(i).setNotThree(Boolean.TRUE);
+                            break;
+                        case FOUR:
+                            cardArrayList.get(i).setNotFour(Boolean.TRUE);
+                            break;
+                        case FIVE:
+                            cardArrayList.get(i).setNotFive(Boolean.TRUE);
+                            break;
                     }
                 }
                 cardArrayList.get(i).setSelected(Boolean.FALSE);
@@ -292,6 +365,12 @@ public class TrackerActivity extends AppCompatActivity {
         buttonCard3.setImageResource(cardArrayList.get(2).getImageReference());
         buttonCard4.setImageResource(cardArrayList.get(3).getImageReference());
         buttonCard5.setImageResource(cardArrayList.get(4).getImageReference());
+
+        textViewNeg1.setText(cardArrayList.get(0).getNegativeInfo());
+        textViewNeg2.setText(cardArrayList.get(1).getNegativeInfo());
+        textViewNeg3.setText(cardArrayList.get(2).getNegativeInfo());
+        textViewNeg4.setText(cardArrayList.get(3).getNegativeInfo());
+        textViewNeg5.setText(cardArrayList.get(4).getNegativeInfo());
 
         buttonClue1.setImageResource(R.drawable.c1);
         buttonClue2.setImageResource(R.drawable.c2);

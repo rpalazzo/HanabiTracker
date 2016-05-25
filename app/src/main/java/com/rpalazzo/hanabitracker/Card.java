@@ -11,46 +11,46 @@ public class Card {
 
     private int rank;  // 0 = unknown, 1-5
     private Color suit;
-
-
-
     private Boolean isSelected;
 
-    public Card() {
-        rank = 0; //unknown
-        suit = Color.UNKNOWN;
-        isSelected = Boolean.FALSE;
-    }
-
+    // Negative information:  True => known negative;  False => UNKNOWN (not known positive)
+    private Boolean isNotOne;
+    private Boolean isNotTwo;
+    private Boolean isNotThree;
+    private Boolean isNotFour;
+    private Boolean isNotFive;
+    private Boolean isNotRed;
+    private Boolean isNotYellow;
+    private Boolean isNotBlue;
+    private Boolean isNotWhite;
+    private Boolean isNotGreen;
+    private Boolean isNotMulticolor;
+    private String NegativeInfo;
 
     public enum Color {
         UNKNOWN, RED, YELLOW, BLUE, WHITE, GREEN, MULTICOLOR
     }
 
-    public int getRank() {
-        return rank;
+
+    public Card() {
+        rank = 0; //unknown
+        suit = Color.UNKNOWN;
+        isSelected = Boolean.FALSE;
+
+        isNotOne = Boolean.FALSE;
+        isNotTwo = Boolean.FALSE;
+        isNotThree = Boolean.FALSE;
+        isNotFour = Boolean.FALSE;
+        isNotFive = Boolean.FALSE;
+        isNotRed = Boolean.FALSE;
+        isNotYellow = Boolean.FALSE;
+        isNotBlue = Boolean.FALSE;
+        isNotWhite = Boolean.FALSE;
+        isNotGreen = Boolean.FALSE;
+        isNotMulticolor = Boolean.FALSE;
+        NegativeInfo = "";
     }
 
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
-    public Color getSuit() {
-        return suit;
-    }
-
-    public void setSuit(Color suit) {
-        this.suit = suit;
-    }
-
-
-    public Boolean getSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(Boolean selected) {
-        isSelected = selected;
-    }
 
     public int getImageReference() {
 
@@ -229,6 +229,141 @@ public class Card {
         return retval;
     }
 
+    public String  getNegativeInfo() {
+        NegativeInfo = "";
+
+       if (rank == 0 || suit == Color.UNKNOWN) {
+                NegativeInfo = "   NOT:  ";
+        }
+        if (rank == 0) {
+            if (isNotOne) { NegativeInfo += "1"; }
+            if (isNotTwo) { NegativeInfo += "2"; }
+            if (isNotThree) { NegativeInfo += "3"; }
+            if (isNotFour) { NegativeInfo += "4"; }
+            if (isNotFive) { NegativeInfo += "5"; }
+        }
+        if (suit == Color.UNKNOWN) {
+            if (isNotRed) { NegativeInfo += "R"; }
+            if (isNotYellow) { NegativeInfo += "Y"; }
+            if (isNotBlue) { NegativeInfo += "B"; }
+            if (isNotWhite) { NegativeInfo += "W"; }
+            if (isNotGreen) { NegativeInfo += "G"; }
+            //TODO: check for multicolor and display if needed
+        }
+
+        return NegativeInfo;
+    }
+
+    public int getRank() { return rank; }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public Color getSuit() {
+        return suit;
+    }
+
+    public void setSuit(Color suit) {
+        this.suit = suit;
+    }
+
+    public Boolean getSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(Boolean selected) {
+        isSelected = selected;
+    }
+
+
+    public Boolean getNotOne() {
+        return isNotOne;
+    }
+
+    public void setNotOne(Boolean notOne) {
+        isNotOne = notOne;
+    }
+
+    public Boolean getNotTwo() {
+        return isNotTwo;
+    }
+
+    public void setNotTwo(Boolean notTwo) {
+        isNotTwo = notTwo;
+    }
+
+    public Boolean getNotThree() {
+        return isNotThree;
+    }
+
+    public void setNotThree(Boolean notThree) {
+        isNotThree = notThree;
+    }
+
+    public Boolean getNotFour() {
+        return isNotFour;
+    }
+
+    public void setNotFour(Boolean notFour) {
+        isNotFour = notFour;
+    }
+
+    public Boolean getNotFive() {
+        return isNotFive;
+    }
+
+    public void setNotFive(Boolean notFive) {
+        isNotFive = notFive;
+    }
+
+    public Boolean getNotRed() {
+        return isNotRed;
+    }
+
+    public void setNotRed(Boolean notRed) {
+        isNotRed = notRed;
+    }
+
+    public Boolean getNotYellow() {
+        return isNotYellow;
+    }
+
+    public void setNotYellow(Boolean notYellow) {
+        isNotYellow = notYellow;
+    }
+
+    public Boolean getNotBlue() {
+        return isNotBlue;
+    }
+
+    public void setNotBlue(Boolean notBlue) {
+        isNotBlue = notBlue;
+    }
+
+    public Boolean getNotWhite() {
+        return isNotWhite;
+    }
+
+    public void setNotWhite(Boolean notWhite) {
+        isNotWhite = notWhite;
+    }
+
+    public Boolean getNotGreen() {
+        return isNotGreen;
+    }
+
+    public void setNotGreen(Boolean notGreen) {
+        isNotGreen = notGreen;
+    }
+
+    public Boolean getNotMulticolor() {
+        return isNotMulticolor;
+    }
+
+    public void setNotMulticolor(Boolean notMulticolor) {
+        isNotMulticolor = notMulticolor;
+    }
 
 
 }
