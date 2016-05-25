@@ -232,9 +232,6 @@ public class Card {
     public String  getNegativeInfo() {
         NegativeInfo = "";
 
-       if (rank == 0 || suit == Color.UNKNOWN) {
-                NegativeInfo = "   NOT:  ";
-        }
         if (rank == 0) {
             if (isNotOne) { NegativeInfo += "1"; }
             if (isNotTwo) { NegativeInfo += "2"; }
@@ -249,6 +246,9 @@ public class Card {
             if (isNotWhite) { NegativeInfo += "W"; }
             if (isNotGreen) { NegativeInfo += "G"; }
             //TODO: check for multicolor and display if needed
+        }
+        if (NegativeInfo.length() != 0) {
+            NegativeInfo = "   NOT:  " + NegativeInfo;
         }
 
         return NegativeInfo;
