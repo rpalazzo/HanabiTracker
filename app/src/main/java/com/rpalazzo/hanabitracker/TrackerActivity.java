@@ -134,15 +134,24 @@ public class TrackerActivity extends AppCompatActivity {
     public void onDel5(View view) { onDel(4); }
 
     private void onDel(int index) {
+
+        // remove selected card
         cardArrayList.remove(index);
 
+        // add new card
         com.rpalazzo.hanabitracker.Card c = new com.rpalazzo.hanabitracker.Card();
         c.setRank(0);
         c.setSuit(com.rpalazzo.hanabitracker.Card.Color.UNKNOWN);
         cardArrayList.add(c);
 
+        // unselect any selected clues
         clueSelection = CLUE_SELECTION.NONE;
         currentSelectionMode = SELECTION_MODE.NONE;
+
+        // unselect any selected cards
+        for (int i = 0; i < 5; i++) {
+            cardArrayList.get(i).setSelected(Boolean.FALSE);
+        }
 
         paint();
     }
