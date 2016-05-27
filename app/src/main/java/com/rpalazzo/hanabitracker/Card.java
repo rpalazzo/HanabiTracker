@@ -51,6 +51,24 @@ public class Card {
         NegativeInfo = "";
     }
 
+    public Card(Card c) {
+        this.rank = c.rank;
+        this.suit = c.suit;
+        this.isSelected = Boolean.FALSE;
+        this.isNotOne = c.isNotOne;
+        this.isNotTwo = c.isNotTwo;
+        this.isNotThree = c.isNotThree;
+        this.isNotFour = c.isNotFour;
+        this.isNotFive = c.isNotFive;
+        this.isNotRed = c.isNotRed;
+        this.isNotYellow = c.isNotYellow;
+        this.isNotBlue = c.isNotBlue;
+        this.isNotWhite = c.isNotWhite;
+        this.isNotGreen = c.isNotGreen;
+        this.isNotMulticolor = c.isNotMulticolor;
+        this.NegativeInfo = c.NegativeInfo;
+    }
+
 
     public int getImageReference() {
 

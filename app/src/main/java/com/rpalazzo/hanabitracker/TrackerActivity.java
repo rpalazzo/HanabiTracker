@@ -13,14 +13,19 @@ import android.widget.TextView;
 
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class TrackerActivity extends AppCompatActivity {
 
     private int nCards;
     private int MulticolorMode;
     private ArrayList<com.rpalazzo.hanabitracker.Card> cardArrayList = new ArrayList<com.rpalazzo.hanabitracker.Card>();
+    private Stack<Card> undoStack = new Stack<Card>();
+    //private ArrayList<com.rpalazzo.hanabitracker.Card> tempArrayList = new ArrayList<com.rpalazzo.hanabitracker.Card>();
+    //private Stack<ArrayList<com.rpalazzo.hanabitracker.Card>> undoStack = new Stack<ArrayList<com.rpalazzo.hanabitracker.Card>>();
 
-    private LinearLayout ll;
+
+    //private LinearLayout ll;
     private TableLayout tl;
     private ImageButton multicolorButton;
 
@@ -91,7 +96,7 @@ public class TrackerActivity extends AppCompatActivity {
             multicolorButton.setVisibility(View.GONE);
         }
 
-        // Populate cardArrayList with unknown/unknown cards
+        // Populate cardArrayList with new cards
         for (int i = 0; i < 5; i++) {
             com.rpalazzo.hanabitracker.Card c = new com.rpalazzo.hanabitracker.Card();
             c.setRank(0);
@@ -136,6 +141,8 @@ public class TrackerActivity extends AppCompatActivity {
     public void onDel5(View view) { onDel(4); }
 
     private void onDel(int index) {
+
+        pushCardstoUndoStack();
 
         // remove selected card
         cardArrayList.remove(index);
@@ -187,6 +194,7 @@ public class TrackerActivity extends AppCompatActivity {
             switch (clueSelection){
                 case ONE:
                     if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == 1) {
+                        pushCardstoUndoStack();
                         // Set all cards to NOT this value.  Those of this value won't display it anyway.
                         for (int j = 0; j < 5; j++) {
                             cardArrayList.get(j).setNotOne(Boolean.TRUE);
@@ -197,6 +205,7 @@ public class TrackerActivity extends AppCompatActivity {
                     break;
                 case TWO:
                     if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == 2) {
+                        pushCardstoUndoStack();
                         for (int j = 0; j < 5; j++) {
                             cardArrayList.get(j).setNotTwo(Boolean.TRUE);
                         }
@@ -206,6 +215,7 @@ public class TrackerActivity extends AppCompatActivity {
                     break;
                 case THREE:
                     if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == 3) {
+                        pushCardstoUndoStack();
                         for (int j = 0; j < 5; j++) {
                             cardArrayList.get(j).setNotThree(Boolean.TRUE);
                         }
@@ -215,6 +225,7 @@ public class TrackerActivity extends AppCompatActivity {
                     break;
                 case FOUR:
                     if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == 4) {
+                        pushCardstoUndoStack();
                         for (int j = 0; j < 5; j++) {
                             cardArrayList.get(j).setNotFour(Boolean.TRUE);
                         }
@@ -224,6 +235,7 @@ public class TrackerActivity extends AppCompatActivity {
                     break;
                 case FIVE:
                     if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == 5) {
+                        pushCardstoUndoStack();
                         for (int j = 0; j < 5; j++) {
                             cardArrayList.get(j).setNotFive(Boolean.TRUE);
                         }
@@ -233,6 +245,7 @@ public class TrackerActivity extends AppCompatActivity {
                     break;
                 case RED:
                     if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.RED) {
+                        pushCardstoUndoStack();
                         for (int j = 0; j < 5; j++) {
                             cardArrayList.get(j).setNotRed(Boolean.TRUE);
                         }
@@ -242,6 +255,7 @@ public class TrackerActivity extends AppCompatActivity {
                     break;
                 case YELLOW:
                     if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.YELLOW) {
+                        pushCardstoUndoStack();
                         for (int j = 0; j < 5; j++) {
                             cardArrayList.get(j).setNotYellow(Boolean.TRUE);
                         }
@@ -251,6 +265,7 @@ public class TrackerActivity extends AppCompatActivity {
                     break;
                 case BLUE:
                     if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.BLUE) {
+                        pushCardstoUndoStack();
                         for (int j = 0; j < 5; j++) {
                             cardArrayList.get(j).setNotBlue(Boolean.TRUE);
                         }
@@ -260,6 +275,7 @@ public class TrackerActivity extends AppCompatActivity {
                     break;
                 case WHITE:
                     if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.WHITE) {
+                        pushCardstoUndoStack();
                         for (int j = 0; j < 5; j++) {
                             cardArrayList.get(j).setNotWhite(Boolean.TRUE);
                         }
@@ -269,6 +285,7 @@ public class TrackerActivity extends AppCompatActivity {
                     break;
                 case GREEN:
                     if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.GREEN) {
+                        pushCardstoUndoStack();
                         for (int j = 0; j < 5; j++) {
                             cardArrayList.get(j).setNotGreen(Boolean.TRUE);
                         }
@@ -278,6 +295,7 @@ public class TrackerActivity extends AppCompatActivity {
                     break;
                 case MULTICOLOR:
                     if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.MULTICOLOR) {
+                        pushCardstoUndoStack();
                         for (int j = 0; j < 5; j++) {
                             cardArrayList.get(j).setNotMulticolor(Boolean.TRUE);
                         }
@@ -408,6 +426,9 @@ public class TrackerActivity extends AppCompatActivity {
                 }
             }
 
+            // There were no errors, so push cards to undoStack
+            pushCardstoUndoStack();
+
             // Change the selected card(s) to the clued suit or rank
             for (int i = 0; i < 5; i++) {
                 if (cardArrayList.get(i).getSelected() == Boolean.TRUE) {
@@ -493,6 +514,31 @@ public class TrackerActivity extends AppCompatActivity {
         }
         paint();
     }
+
+    public void pushCardstoUndoStack() {
+        Card temp;
+        for (Card c : cardArrayList) {
+            temp = new Card(c);
+            undoStack.push(temp);
+        }
+    }
+
+    public void onUndo(View view) {
+
+        if (undoStack.size() >= 5) {
+            cardArrayList.clear();
+            for (int i = 0; i < 5; i++) {
+                Card temp = new Card(undoStack.pop());
+                //cardArrayList.add(new Card(undoStack.pop()));
+                cardArrayList.add(0, temp);
+            }
+            paint();
+        }
+        else {
+            errorFeedback();
+        }
+    }
+
 
     public void paint() {
         buttonCard1.setImageResource(cardArrayList.get(0).getImageReference());
