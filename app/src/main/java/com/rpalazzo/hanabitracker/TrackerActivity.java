@@ -532,10 +532,19 @@ public class TrackerActivity extends AppCompatActivity {
                 //cardArrayList.add(new Card(undoStack.pop()));
                 cardArrayList.add(0, temp);
             }
+
             paint();
         }
         else {
             errorFeedback();
+        }
+
+        // unselect any selected clues
+        clueSelection = CLUE_SELECTION.NONE;
+        currentSelectionMode = SELECTION_MODE.NONE;
+        // unselect any selected cards
+        for (int i = 0; i < 5; i++) {
+            cardArrayList.get(i).setSelected(Boolean.FALSE);
         }
     }
 
