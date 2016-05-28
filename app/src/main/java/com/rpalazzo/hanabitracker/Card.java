@@ -101,6 +101,10 @@ public class Card {
                         if (this.isSelected == Boolean.TRUE) {retval = R.drawable.gus;}
                         else {retval = R.drawable.gu;}
                         break;
+                    case MULTICOLOR:
+                        if (this.isSelected == Boolean.TRUE) {retval = R.drawable.mus;}
+                        else {retval = R.drawable.mu;}
+                        break;
                 }
                 break;
             case 1:
@@ -128,6 +132,10 @@ public class Card {
                     case GREEN:
                         if (this.isSelected == Boolean.TRUE) {retval = R.drawable.g1s;}
                         else {retval = R.drawable.g1;}
+                        break;
+                    case MULTICOLOR:
+                        if (this.isSelected == Boolean.TRUE) {retval = R.drawable.m1s;}
+                        else {retval = R.drawable.m1;}
                         break;
                 }
                 break;
@@ -157,6 +165,10 @@ public class Card {
                         if (this.isSelected == Boolean.TRUE) {retval = R.drawable.g2s;}
                         else {retval = R.drawable.g2;}
                         break;
+                    case MULTICOLOR:
+                        if (this.isSelected == Boolean.TRUE) {retval = R.drawable.m2s;}
+                        else {retval = R.drawable.m2;}
+                        break;
                 }
                 break;
             case 3:
@@ -184,6 +196,10 @@ public class Card {
                     case GREEN:
                         if (this.isSelected == Boolean.TRUE) {retval = R.drawable.g3s;}
                         else {retval = R.drawable.g3;}
+                        break;
+                    case MULTICOLOR:
+                        if (this.isSelected == Boolean.TRUE) {retval = R.drawable.m3s;}
+                        else {retval = R.drawable.m3;}
                         break;
                 }
                 break;
@@ -213,6 +229,10 @@ public class Card {
                         if (this.isSelected == Boolean.TRUE) {retval = R.drawable.g4s;}
                         else {retval = R.drawable.g4;}
                         break;
+                    case MULTICOLOR:
+                        if (this.isSelected == Boolean.TRUE) {retval = R.drawable.m4s;}
+                        else {retval = R.drawable.m4;}
+                        break;
                 }
                 break;
             case 5:
@@ -241,6 +261,10 @@ public class Card {
                         if (this.isSelected == Boolean.TRUE) {retval = R.drawable.g5s;}
                         else {retval = R.drawable.g5;}
                         break;
+                    case MULTICOLOR:
+                        if (this.isSelected == Boolean.TRUE) {retval = R.drawable.m5s;}
+                        else {retval = R.drawable.m5;}
+                        break;
                 }
                 break;
         }
@@ -263,7 +287,7 @@ public class Card {
             if (isNotBlue) { NegativeInfo += "B"; }
             if (isNotWhite) { NegativeInfo += "W"; }
             if (isNotGreen) { NegativeInfo += "G"; }
-            //TODO: check for multicolor and display if needed
+            if (isNotMulticolor) { NegativeInfo += "M"; }
         }
         if (NegativeInfo.length() != 0) {
             NegativeInfo = "   NOT:  " + NegativeInfo;
