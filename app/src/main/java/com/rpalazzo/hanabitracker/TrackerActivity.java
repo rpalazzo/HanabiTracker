@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.test.RenamingDelegatingContext;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -21,11 +22,8 @@ public class TrackerActivity extends AppCompatActivity {
     private int MulticolorMode;
     private ArrayList<com.rpalazzo.hanabitracker.Card> cardArrayList = new ArrayList<com.rpalazzo.hanabitracker.Card>();
     private Stack<Card> undoStack = new Stack<Card>();
-    //private ArrayList<com.rpalazzo.hanabitracker.Card> tempArrayList = new ArrayList<com.rpalazzo.hanabitracker.Card>();
-    //private Stack<ArrayList<com.rpalazzo.hanabitracker.Card>> undoStack = new Stack<ArrayList<com.rpalazzo.hanabitracker.Card>>();
 
 
-    //private LinearLayout ll;
     private TableLayout tl;
     private ImageButton multicolorButton;
 
@@ -98,9 +96,9 @@ public class TrackerActivity extends AppCompatActivity {
 
         // Populate cardArrayList with new cards
         for (int i = 0; i < 5; i++) {
-            com.rpalazzo.hanabitracker.Card c = new com.rpalazzo.hanabitracker.Card();
-            c.setRank(0);
-            c.setSuit(com.rpalazzo.hanabitracker.Card.Color.UNKNOWN);
+            com.rpalazzo.hanabitracker.Card c = new com.rpalazzo.hanabitracker.Card(MulticolorMode);
+            //c.setRank(0);
+            //c.setSuit(com.rpalazzo.hanabitracker.Card.Color.UNKNOWN);
             cardArrayList.add(c);
         }
 
@@ -142,15 +140,16 @@ public class TrackerActivity extends AppCompatActivity {
 
     private void onDel(int index) {
 
+        cleanupMulticardRainbow();
         pushCardstoUndoStack();
 
         // remove selected card
         cardArrayList.remove(index);
 
         // add new card
-        com.rpalazzo.hanabitracker.Card c = new com.rpalazzo.hanabitracker.Card();
-        c.setRank(0);
-        c.setSuit(com.rpalazzo.hanabitracker.Card.Color.UNKNOWN);
+        com.rpalazzo.hanabitracker.Card c = new com.rpalazzo.hanabitracker.Card(MulticolorMode);
+        //c.setRank(0);
+        //c.setSuit(com.rpalazzo.hanabitracker.Card.Color.UNKNOWN);
         cardArrayList.add(c);
 
         // unselect any selected clues
@@ -172,6 +171,9 @@ public class TrackerActivity extends AppCompatActivity {
     public void onCard5(View view) { onCard(4); }
 
     private void onCard(int index) {
+
+        // do NOT call cleanupMulticardRainbow here!!!
+
         if (currentSelectionMode == SELECTION_MODE.NONE || currentSelectionMode == SELECTION_MODE.CARD) {
             if (cardArrayList.get(index).getSelected() == Boolean.TRUE)
             {
@@ -190,125 +192,134 @@ public class TrackerActivity extends AppCompatActivity {
                 currentSelectionMode = SELECTION_MODE.CARD;
             }
         }
-        else { // currentSelectionMode == SELECTION_MODE.CLUE
+        else { // Apply currently selected clue to this card
             switch (clueSelection){
                 case ONE:
-                    if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == 1) {
-                        pushCardstoUndoStack();
-                        // Set all cards to NOT this value.  Those of this value won't display it anyway.
-                        for (int j = 0; j < 5; j++) {
-                            cardArrayList.get(j).setNotOne(Boolean.TRUE);
-                        }
-                        cardArrayList.get(index).setRank(1);
-                    }
-                    else { errorFeedback(); }
+                    ApplyNumberToCard(index, 1);
                     break;
                 case TWO:
-                    if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == 2) {
-                        pushCardstoUndoStack();
-                        for (int j = 0; j < 5; j++) {
-                            cardArrayList.get(j).setNotTwo(Boolean.TRUE);
-                        }
-                        cardArrayList.get(index).setRank(2);
-                    }
-                    else { errorFeedback(); }
+                    ApplyNumberToCard(index, 2);
                     break;
                 case THREE:
-                    if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == 3) {
-                        pushCardstoUndoStack();
-                        for (int j = 0; j < 5; j++) {
-                            cardArrayList.get(j).setNotThree(Boolean.TRUE);
-                        }
-                        cardArrayList.get(index).setRank(3);
-                    }
-                    else { errorFeedback(); }
+                    ApplyNumberToCard(index, 3);
                     break;
                 case FOUR:
-                    if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == 4) {
-                        pushCardstoUndoStack();
-                        for (int j = 0; j < 5; j++) {
-                            cardArrayList.get(j).setNotFour(Boolean.TRUE);
-                        }
-                        cardArrayList.get(index).setRank(4);
-                    }
-                    else { errorFeedback(); }
+                    ApplyNumberToCard(index, 4);
                     break;
                 case FIVE:
-                    if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == 5) {
-                        pushCardstoUndoStack();
-                        for (int j = 0; j < 5; j++) {
-                            cardArrayList.get(j).setNotFive(Boolean.TRUE);
-                        }
-                        cardArrayList.get(index).setRank(5);
-                    }
-                    else { errorFeedback(); }
+                    ApplyNumberToCard(index, 5);
                     break;
                 case RED:
-                    if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.RED) {
-                        pushCardstoUndoStack();
-                        for (int j = 0; j < 5; j++) {
-                            cardArrayList.get(j).setNotRed(Boolean.TRUE);
-                        }
-                        cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.RED);
-                    }
-                    else { errorFeedback(); }
+                    ApplyColorToCard(index, Card.Color.RED);
                     break;
                 case YELLOW:
-                    if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.YELLOW) {
-                        pushCardstoUndoStack();
-                        for (int j = 0; j < 5; j++) {
-                            cardArrayList.get(j).setNotYellow(Boolean.TRUE);
-                        }
-                        cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.YELLOW);
-                    }
-                    else { errorFeedback(); }
+                    ApplyColorToCard(index, Card.Color.YELLOW);
                     break;
                 case BLUE:
-                    if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.BLUE) {
-                        pushCardstoUndoStack();
-                        for (int j = 0; j < 5; j++) {
-                            cardArrayList.get(j).setNotBlue(Boolean.TRUE);
-                        }
-                        cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.BLUE);
-                    }
-                    else { errorFeedback(); }
+                    ApplyColorToCard(index, Card.Color.BLUE);
                     break;
                 case WHITE:
-                    if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.WHITE) {
-                        pushCardstoUndoStack();
-                        for (int j = 0; j < 5; j++) {
-                            cardArrayList.get(j).setNotWhite(Boolean.TRUE);
-                        }
-                        cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.WHITE);
-                    }
-                    else { errorFeedback(); }
+                    ApplyColorToCard(index, Card.Color.WHITE);
                     break;
                 case GREEN:
-                    if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.GREEN) {
-                        pushCardstoUndoStack();
-                        for (int j = 0; j < 5; j++) {
-                            cardArrayList.get(j).setNotGreen(Boolean.TRUE);
-                        }
-                        cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.GREEN);
-                    }
-                    else { errorFeedback(); }
+                    ApplyColorToCard(index, Card.Color.GREEN);
                     break;
                 case MULTICOLOR:
-                    if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || cardArrayList.get(index).getSuit() == Card.Color.MULTICOLOR) {
-                        pushCardstoUndoStack();
-                        for (int j = 0; j < 5; j++) {
-                            cardArrayList.get(j).setNotMulticolor(Boolean.TRUE);
-                        }
-                        cardArrayList.get(index).setSuit(com.rpalazzo.hanabitracker.Card.Color.MULTICOLOR);
-                    }
-                    else { errorFeedback(); }
+                    ApplyColorToCard(index, Card.Color.MULTICOLOR);
                     break;
             }
          }
         paint();
     }
 
+    // Called from OnCard();  A clue is selected and then one or more cards are clued.
+    private void ApplyNumberToCard( int index, int n) {
 
+        // If the card number is unknown (0) or already set to this numbeer...
+        if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == n) {
+
+            // ... save off the current state before making any changes
+            pushCardstoUndoStack();
+
+            // ... set the negative information for all other cards that are not already this number
+            for (int j = 0; j < 5; j++) {
+                if (cardArrayList.get(j).getRank() != n) {
+                    cardArrayList.get(j).setNotNumber(n, Boolean.TRUE);
+                }
+            }
+
+            // ... set the card to this number (do this AFTER setting negative info)
+            cardArrayList.get(index).setRank(n);
+        }
+        else { errorFeedback(); }
+
+    }
+
+    // Called from OnCard();  A clue is selected and then one or more cards are clued.
+    private void ApplyColorToCard( int index, Card.Color color) {
+
+        // If the card suit is unknown or already set to this color...
+        if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || (cardArrayList.get(index).getSuit() == color)) {
+
+            // ... save off the current state before making any changes
+            pushCardstoUndoStack();
+
+            // ... set the negative information for all other cards that are not already this color
+            for (int j = 0; j < 5; j++) {
+                if ( j != index && cardArrayList.get(j).getDirtyFlag() == Boolean.FALSE) { // if not this card or already dealt with (dirty)
+                    if (cardArrayList.get(j).getSuit() != color) {
+                        cardArrayList.get(j).setNotColor(color, Boolean.TRUE);
+                    }
+                    if (cardArrayList.get(j).getRainbowState() == Card.Rainbow.POSSIBLE_RAINBOW ) {
+                        // This change may get reverted.  See Note below.
+                        cardArrayList.get(j).setRainbowState(Card.Rainbow.PENDING_NOT_RAINBOW);
+                    }
+                }
+            }
+
+            // While cluing multiple cards, cards after the first will be marked PENDING_NOT_RAINBOW.
+            // If these cards are subsequently selected, reset them to POSSIBLE_RAINBOW.
+            if (cardArrayList.get(index).getRainbowState() == Card.Rainbow.PENDING_NOT_RAINBOW) {
+                cardArrayList.get(index).setRainbowState(Card.Rainbow.POSSIBLE_RAINBOW);
+            }
+
+            // ... set the suit to this color (do this AFTER setting negative info)
+            cardArrayList.get(index).setSuit(color);
+
+            // ... set dirtyFlag so we know to keep this card as a possible rainbow
+            if (cardArrayList.get(index).getRainbowState() == Card.Rainbow.POSSIBLE_RAINBOW) {
+                cardArrayList.get(index).setDirtyFlag(Boolean.TRUE);
+            }
+        }
+
+        // Allow a different color clue if in multicolor mode and
+        else if ( MulticolorMode == 2 && cardArrayList.get(index).getRainbowState() != Card.Rainbow.IS_NOT_RAINBOW) {
+
+            // ... save off the current state before making any changes
+            pushCardstoUndoStack();
+
+            // ... set the negative information for all other cards that are not already this color
+            for (int j = 0; j < 5; j++) {
+                if ( j != index && cardArrayList.get(j).getDirtyFlag() == Boolean.FALSE) {
+                    if (cardArrayList.get(j).getSuit() != color) {
+                        cardArrayList.get(j).setNotColor(color, Boolean.TRUE);
+                    }
+                    if (cardArrayList.get(j).getRainbowState() == Card.Rainbow.POSSIBLE_RAINBOW ) {
+                        cardArrayList.get(j).setRainbowState(Card.Rainbow.PENDING_NOT_RAINBOW);
+                    }
+                }
+            }
+
+            cardArrayList.get(index).setSuit(Card.Color.MULTICOLOR);
+            cardArrayList.get(index).setRainbowState(Card.Rainbow.IS_RAINBOW);
+
+        }
+
+        // otherwise prevent conflicting color clues
+        else {
+            errorFeedback();
+        }
+    }
 
     public void onClueRed(View view) { OnClue(CLUE_SELECTION.RED); }
     public void onClueYellow(View view) { OnClue(CLUE_SELECTION.YELLOW); }
@@ -323,6 +334,8 @@ public class TrackerActivity extends AppCompatActivity {
     public void onClue5(View view) { OnClue(CLUE_SELECTION.FIVE); }
 
     private void OnClue(CLUE_SELECTION clue) {
+
+        cleanupMulticardRainbow();
 
         // if the currently selected clue is selected again; deselect it
         if (clueSelection == clue) {
@@ -347,42 +360,54 @@ public class TrackerActivity extends AppCompatActivity {
 
                     switch (clue) {
                         case RED:
-                            if (cardArrayList.get(j).getSuit() != Card.Color.UNKNOWN &&
-                                    cardArrayList.get(j).getSuit() != Card.Color.RED) {
+                            if (!(cardArrayList.get(j).getSuit() == Card.Color.UNKNOWN ||
+                                    cardArrayList.get(j).getSuit() == Card.Color.RED  ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.IS_RAINBOW ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.POSSIBLE_RAINBOW)) {
                                 errorFeedback();
                                 return;
-                            }
+                                }
                             break;
                         case YELLOW:
-                            if (cardArrayList.get(j).getSuit() != Card.Color.UNKNOWN &&
-                                    cardArrayList.get(j).getSuit() != Card.Color.YELLOW) {
+                            if (!(cardArrayList.get(j).getSuit() == Card.Color.UNKNOWN ||
+                                    cardArrayList.get(j).getSuit() == Card.Color.YELLOW  ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.IS_RAINBOW ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.POSSIBLE_RAINBOW)) {
                                 errorFeedback();
                                 return;
                             }
                             break;
                         case BLUE:
-                            if (cardArrayList.get(j).getSuit() != Card.Color.UNKNOWN &&
-                                    cardArrayList.get(j).getSuit() != Card.Color.BLUE) {
+                            if (!(cardArrayList.get(j).getSuit() == Card.Color.UNKNOWN ||
+                                    cardArrayList.get(j).getSuit() == Card.Color.BLUE  ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.IS_RAINBOW ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.POSSIBLE_RAINBOW)) {
                                 errorFeedback();
                                 return;
                             }
                             break;
                         case WHITE:
-                            if (cardArrayList.get(j).getSuit() != Card.Color.UNKNOWN &&
-                                    cardArrayList.get(j).getSuit() != Card.Color.WHITE) {
+                            if (!(cardArrayList.get(j).getSuit() == Card.Color.UNKNOWN ||
+                                    cardArrayList.get(j).getSuit() == Card.Color.WHITE  ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.IS_RAINBOW ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.POSSIBLE_RAINBOW)) {
                                 errorFeedback();
                                 return;
                             }
                             break;
                         case GREEN:
-                            if (cardArrayList.get(j).getSuit() != Card.Color.UNKNOWN &&
-                                    cardArrayList.get(j).getSuit() != Card.Color.GREEN) {
+                            if (!(cardArrayList.get(j).getSuit() == Card.Color.UNKNOWN ||
+                                    cardArrayList.get(j).getSuit() == Card.Color.GREEN  ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.IS_RAINBOW ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.POSSIBLE_RAINBOW)) {
                                 errorFeedback();
                                 return;
                             }
                         case MULTICOLOR:
-                            if (cardArrayList.get(j).getSuit() != Card.Color.UNKNOWN &&
-                                    cardArrayList.get(j).getSuit() != Card.Color.MULTICOLOR) {
+                            if (!(cardArrayList.get(j).getSuit() == Card.Color.UNKNOWN ||
+                                    cardArrayList.get(j).getSuit() == Card.Color.MULTICOLOR  ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.IS_RAINBOW ||
+                                    cardArrayList.get(j).getRainbowState() == Card.Rainbow.POSSIBLE_RAINBOW)) {
                                 errorFeedback();
                                 return;
                             }
@@ -435,22 +460,22 @@ public class TrackerActivity extends AppCompatActivity {
 
                     switch (clue) {
                         case RED:
-                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.RED);
+                            applyColorToCard2(cardArrayList.get(i), Card.Color.RED);
                             break;
                         case YELLOW:
-                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.YELLOW);
+                            applyColorToCard2(cardArrayList.get(i), Card.Color.YELLOW);
                             break;
                         case BLUE:
-                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.BLUE);
+                            applyColorToCard2(cardArrayList.get(i), Card.Color.BLUE);
                             break;
                         case WHITE:
-                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.WHITE);
+                            applyColorToCard2(cardArrayList.get(i), Card.Color.WHITE);
                             break;
                         case GREEN:
-                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.GREEN);
+                            applyColorToCard2(cardArrayList.get(i), Card.Color.GREEN);
                             break;
                         case MULTICOLOR:
-                            cardArrayList.get(i).setSuit(com.rpalazzo.hanabitracker.Card.Color.MULTICOLOR);
+                            applyColorToCard2(cardArrayList.get(i), Card.Color.MULTICOLOR);
                             break;
                         case ONE:
                             cardArrayList.get(i).setRank(1);
@@ -475,21 +500,28 @@ public class TrackerActivity extends AppCompatActivity {
                     switch (clue) {
                         case RED:
                             cardArrayList.get(i).setNotRed(Boolean.TRUE);
+                            cardArrayList.get(i).setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
+                            // todo: error if not all possible cards are clued
                             break;
                         case YELLOW:
                             cardArrayList.get(i).setNotYellow(Boolean.TRUE);
+                            cardArrayList.get(i).setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
                             break;
                         case BLUE:
                             cardArrayList.get(i).setNotBlue(Boolean.TRUE);
+                            cardArrayList.get(i).setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
                             break;
                         case WHITE:
                             cardArrayList.get(i).setNotWhite(Boolean.TRUE);
+                            cardArrayList.get(i).setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
                             break;
                         case GREEN:
                             cardArrayList.get(i).setNotGreen(Boolean.TRUE);
+                            cardArrayList.get(i).setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
                             break;
                         case MULTICOLOR:
                             cardArrayList.get(i).setNotMulticolor(Boolean.TRUE);
+                            //cardArrayList.get(i).setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
                             break;
                         case ONE:
                             cardArrayList.get(i).setNotOne(Boolean.TRUE);
@@ -515,6 +547,20 @@ public class TrackerActivity extends AppCompatActivity {
         paint();
     }
 
+    public void applyColorToCard2(Card card, Card.Color color) {
+        if (card.getSuit() == Card.Color.UNKNOWN) {
+            card.setSuit(color);
+            //cardArrayList.get(i).setRainbowState(Card.Rainbow.POSSIBLE_RAINBOW);
+        }
+        else if (card.getSuit() == color) {
+            // do nothing
+        }
+        else { // some other color
+            card.setSuit(Card.Color.MULTICOLOR);
+            card.setRainbowState(Card.Rainbow.IS_RAINBOW);
+        }
+    }
+
     public void pushCardstoUndoStack() {
         Card temp;
         for (Card c : cardArrayList) {
@@ -524,6 +570,8 @@ public class TrackerActivity extends AppCompatActivity {
     }
 
     public void onUndo(View view) {
+
+        cleanupMulticardRainbow();
 
         if (undoStack.size() >= 5) {
             cardArrayList.clear();
@@ -616,7 +664,7 @@ public class TrackerActivity extends AppCompatActivity {
 
     public void errorFeedback() {
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        long[] pattern = {0, 200, 100, 200};
+        long[] pattern = {0, 100, 100, 200};
         v.vibrate(pattern, -1);
 
         // unselect any selected clues
@@ -629,5 +677,19 @@ public class TrackerActivity extends AppCompatActivity {
         }
 
         paint();
+    }
+
+    // This function must be called at the beginning of every button action except a Card,
+    // i.e., after a color clue, number clue, delete, or undo
+    private void cleanupMulticardRainbow() {
+        for (Card card : cardArrayList) {
+            if (card.getRainbowState() == Card.Rainbow.PENDING_NOT_RAINBOW) {
+                card.setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
+            }
+            if (card.getDirtyFlag() == Boolean.TRUE) {
+                card.setRainbowState(Card.Rainbow.POSSIBLE_RAINBOW);
+                card.setDirtyFlag(Boolean.FALSE);
+            }
+        }
     }
 }
