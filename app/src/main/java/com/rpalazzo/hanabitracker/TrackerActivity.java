@@ -403,6 +403,7 @@ public class TrackerActivity extends AppCompatActivity {
                                 errorFeedback();
                                 return;
                             }
+                            break;
                         case MULTICOLOR:
                             if (!(cardArrayList.get(j).getSuit() == Card.Color.UNKNOWN ||
                                     cardArrayList.get(j).getSuit() == Card.Color.MULTICOLOR  ||
