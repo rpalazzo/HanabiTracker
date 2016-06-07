@@ -1,3 +1,8 @@
+/* Copyright 2016 Robert Palazzo <rpalazzo@gmail.com>
+ * Proprietary and confidential
+ * Copying of this file without express written consent is prohibited.
+ */
+
 package com.rpalazzo.hanabitracker;
 
 import android.content.Intent;

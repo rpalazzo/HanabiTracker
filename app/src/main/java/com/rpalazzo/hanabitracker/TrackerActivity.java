@@ -1,3 +1,8 @@
+/* Copyright 2016 Robert Palazzo <rpalazzo@gmail.com>
+ * Proprietary and confidential
+ * Copying of this file without express written consent is prohibited.
+ */
+
 package com.rpalazzo.hanabitracker;
 
 import android.content.Context;
@@ -129,8 +134,17 @@ public class TrackerActivity extends AppCompatActivity {
         paint();
 
 
+        /*buttonCard1.setOnLongClickListener(new View.OnLongClickListener() {
+           public boolean onLongClick(View v) {
+               longclick();
+               return true;
+           }
+       });*/
+
         Log.v("TrackerActivity","Exiting");
     }
+
+    //void longclick() {}
 
     public void onDel1(View view) { onDel(0); }
     public void onDel2(View view) { onDel(1); }

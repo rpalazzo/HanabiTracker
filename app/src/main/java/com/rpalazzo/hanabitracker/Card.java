@@ -1,3 +1,8 @@
+/* Copyright 2016 Robert Palazzo <rpalazzo@gmail.com>
+ * Proprietary and confidential
+ * Copying of this file without express written consent is prohibited.
+ */
+
 package com.rpalazzo.hanabitracker;
 
 import android.graphics.drawable.Drawable;
@@ -5,9 +10,7 @@ import android.support.annotation.BoolRes;
 
 import com.rpalazzo.hanabitracker.R;
 
-/**
- * Created by rpalazzo on 5/19/16.
- */
+
 public class Card {
 
     private int rank;  // 0 = unknown, 1-5
@@ -225,8 +228,21 @@ public class Card {
             case 1:
                 switch (this.suit){
                     case UNKNOWN:
-                        if (this.isSelected == Boolean.TRUE) {retval = R.drawable.u1s;}
-                        else {retval = R.drawable.u1;}
+                        if (this.isSelected == Boolean.TRUE) {
+                            if (this.rainbowState == Rainbow.POSSIBLE_RAINBOW) {
+                                retval = R.drawable.um1s;
+                            } else { // not PossibleMulticolor
+                                retval = R.drawable.u1s;
+                            }
+                        }
+                        else { // not selected
+                            if (this.rainbowState == Rainbow.POSSIBLE_RAINBOW) {
+                                retval = R.drawable.um1;
+                            }
+                            else{
+                                {retval = R.drawable.u1;}
+                            }
+                        }
                         break;
                     case RED:
                         if (this.isSelected == Boolean.TRUE) {
@@ -322,8 +338,21 @@ public class Card {
             case 2:
                 switch (this.suit){
                     case UNKNOWN:
-                        if (this.isSelected == Boolean.TRUE) {retval = R.drawable.u2s;}
-                        else {retval = R.drawable.u2;}
+                        if (this.isSelected == Boolean.TRUE) {
+                            if (this.rainbowState == Rainbow.POSSIBLE_RAINBOW) {
+                                retval = R.drawable.um2s;
+                            } else { // not PossibleMulticolor
+                                retval = R.drawable.u2s;
+                            }
+                        }
+                        else { // not selected
+                            if (this.rainbowState == Rainbow.POSSIBLE_RAINBOW) {
+                                retval = R.drawable.um2;
+                            }
+                            else{
+                                {retval = R.drawable.u2;}
+                            }
+                        }
                         break;
                     case RED:
                         if (this.isSelected == Boolean.TRUE) {
@@ -419,8 +448,21 @@ public class Card {
             case 3:
                 switch (this.suit){
                     case UNKNOWN:
-                        if (this.isSelected == Boolean.TRUE) {retval = R.drawable.u3s;}
-                        else {retval = R.drawable.u3;}
+                        if (this.isSelected == Boolean.TRUE) {
+                            if (this.rainbowState == Rainbow.POSSIBLE_RAINBOW) {
+                                retval = R.drawable.um3s;
+                            } else { // not PossibleMulticolor
+                                retval = R.drawable.u3s;
+                            }
+                        }
+                        else { // not selected
+                            if (this.rainbowState == Rainbow.POSSIBLE_RAINBOW) {
+                                retval = R.drawable.um3;
+                            }
+                            else{
+                                {retval = R.drawable.u3;}
+                            }
+                        }
                         break;
                     case RED:
                         if (this.isSelected == Boolean.TRUE) {
@@ -516,8 +558,21 @@ public class Card {
             case 4:
                 switch (this.suit){
                     case UNKNOWN:
-                        if (this.isSelected == Boolean.TRUE) {retval = R.drawable.u4s;}
-                        else {retval = R.drawable.u4;}
+                        if (this.isSelected == Boolean.TRUE) {
+                            if (this.rainbowState == Rainbow.POSSIBLE_RAINBOW) {
+                                retval = R.drawable.um4s;
+                            } else { // not PossibleMulticolor
+                                retval = R.drawable.u4s;
+                            }
+                        }
+                        else { // not selected
+                            if (this.rainbowState == Rainbow.POSSIBLE_RAINBOW) {
+                                retval = R.drawable.um4;
+                            }
+                            else{
+                                {retval = R.drawable.u4;}
+                            }
+                        }
                         break;
                     case RED:
                         if (this.isSelected == Boolean.TRUE) {
@@ -613,8 +668,21 @@ public class Card {
             case 5:
                 switch (this.suit){
                     case UNKNOWN:
-                        if (this.isSelected == Boolean.TRUE) {retval = R.drawable.u5s;}
-                        else {retval = R.drawable.u5;}
+                        if (this.isSelected == Boolean.TRUE) {
+                            if (this.rainbowState == Rainbow.POSSIBLE_RAINBOW) {
+                                retval = R.drawable.um5s;
+                            } else { // not PossibleMulticolor
+                                retval = R.drawable.u5s;
+                            }
+                        }
+                        else { // not selected
+                            if (this.rainbowState == Rainbow.POSSIBLE_RAINBOW) {
+                                retval = R.drawable.um5;
+                            }
+                            else{
+                                {retval = R.drawable.u5;}
+                            }
+                        }
                         break;
                     case RED:
                         if (this.isSelected == Boolean.TRUE) {
