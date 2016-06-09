@@ -6,8 +6,10 @@
 package com.rpalazzo.hanabitracker;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.test.RenamingDelegatingContext;
 import android.util.Log;
@@ -88,7 +90,14 @@ public class TrackerActivity extends AppCompatActivity {
         nCards = getIntent().getIntExtra("nCards", 0);
         if (nCards == 0) {
             tl = (TableLayout) findViewById(R.id.tableLayout1);
-            tl.setColumnCollapsed(0, true);  //TODO: if aging from left to right, then Collapse 4
+            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            String strnegativeinfo = SP.getString("agedirection_key", "NA");
+            if (strnegativeinfo.equals("Left to right")) {
+                tl.setColumnCollapsed(4, true);
+            }
+            else {
+                tl.setColumnCollapsed(0, true);
+            }
         }
 
         // Hide or display the multicolor clue button
@@ -162,9 +171,14 @@ public class TrackerActivity extends AppCompatActivity {
 
         // add new card
         com.rpalazzo.hanabitracker.Card c = new com.rpalazzo.hanabitracker.Card(MulticolorMode);
-        //c.setRank(0);
-        //c.setSuit(com.rpalazzo.hanabitracker.Card.Color.UNKNOWN);
-        cardArrayList.add(c);
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String strnegativeinfo = SP.getString("agedirection_key", "NA");
+        if (strnegativeinfo.equals("Left to right")) {
+            cardArrayList.add(0, c);
+        }
+        else {
+            cardArrayList.add(c);
+        }
 
         // unselect any selected clues
         clueSelection = CLUE_SELECTION.NONE;
@@ -624,6 +638,16 @@ public class TrackerActivity extends AppCompatActivity {
         textViewNeg3.setText(cardArrayList.get(2).getNegativeInfo());
         textViewNeg4.setText(cardArrayList.get(3).getNegativeInfo());
         textViewNeg5.setText(cardArrayList.get(4).getNegativeInfo());
+
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String strnegativeinfo = SP.getString("negativeinfo_key", "NA");
+        if (strnegativeinfo.equals("Hide")) {
+            textViewNeg1.setText("");
+            textViewNeg2.setText("");
+            textViewNeg3.setText("");
+            textViewNeg4.setText("");
+            textViewNeg5.setText("");
+        }
 
         buttonClue1.setImageResource(R.drawable.c1);
         buttonClue2.setImageResource(R.drawable.c2);

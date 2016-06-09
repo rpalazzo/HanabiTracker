@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:key="negativeinfo_key"
+        android:title="@string/negativeinfo_title"
+        android:summary="@string/negativeinfo_summary"
+        android:dialogTitle="@string/negativeinfo_dialogtitle"
+        android:entries="@array/negativeinfo_entries"
+        android:entryValues="@array/negativeinfo_values"
+        android:defaultValue="@string/negativeinfo_default" />
+
+    <ListPreference
+        android:key="agedirection_key"
+        android:title="@string/agedirection_title"
+        android:summary="@string/agedirection_summary"
+        android:dialogTitle="@string/agedirection_dialogtitle"
+        android:entries="@array/agedirection_entries"
+        android:entryValues="@array/agedirection_values"
+        android:defaultValue="@string/agedirection_default" />
+
+</PreferenceScreen>

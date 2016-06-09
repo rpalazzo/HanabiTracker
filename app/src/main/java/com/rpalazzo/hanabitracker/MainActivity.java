@@ -81,4 +81,9 @@ public class MainActivity extends AppCompatActivity {
 
         Log.v("MainActivity","Exiting");
     }
+
+    public void onSettingsButton (View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 }
