@@ -66,7 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
         Log.v("MainActivity","Entering");
 
+        Spinner noCards = (Spinner) findViewById(R.id.CardsSpinner);
         int nCards = noCards.getSelectedItemPosition();
+
+        Spinner MulticolorMode = (Spinner) findViewById(R.id.MulticolorSpinner);
         int nMulticolorMode = MulticolorMode.getSelectedItemPosition();
 
         Intent intent = new Intent(this, TrackerActivity.class);
