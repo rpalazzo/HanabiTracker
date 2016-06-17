@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAboutButton(View view) {
-        return;
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
     }
 
     public void onStartButton(View view) {
