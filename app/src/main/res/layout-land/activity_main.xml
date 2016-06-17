@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,50 +14,162 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical" >
+        <!-- android:background="@drawable/fireworksbackground" -->
 
-        <TextView
-            android:id="@+id/no_cards_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/no_cards_prompt"
-            android:textAppearance="?android:attr/textAppearanceMedium">
-        </TextView>
 
-        <Spinner
-            android:id="@+id/CardsSpinner"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/hanabitracker"/>
+
+        </LinearLayout>
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/tableLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2" >
+
+        <!-- http://www.techrepublic.com/article/pro-tip-save-hours-of-frustration-with-this-android-tablelayout-solution/ -->
+        <!-- First Row: Delete buttons -->
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <Space
+                    android:layout_weight=".1"/>
+
+                <TextView
+                    android:id="@+id/no_cards_label"
+                    android:layout_weight=".2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_cards_prompt"
+                    android:textAppearance="?android:attr/textAppearanceMedium">
+                </TextView>
+
+                <Space
+                    android:layout_weight=".1"/>
+
+                <TextView
+                    android:id="@+id/multicolor_label"
+                    android:layout_weight=".2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/multicolor_prompt"
+                    android:textAppearance="?android:attr/textAppearanceMedium">
+                </TextView>
+
+                <Space
+                    android:layout_weight=".1"/>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight=".1"/>
+
+                <Spinner
+                    android:id="@+id/CardsSpinner"
+                    android:layout_weight=".2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:entries="@array/no_cards"
+                    android:prompt="@string/no_cards_prompt" />
+
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight=".1"/>
+
+                <Spinner
+                    android:id="@+id/MulticolorSpinner"
+                    android:layout_weight=".2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:entries="@array/multicolor_mode"
+                    android:prompt="@string/multicolor_prompt"/>
+
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight=".1"/>
+
+            </TableRow>
+        </TableLayout>
+
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/no_cards"
-            android:prompt="@string/no_cards_prompt" />
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/multicolor_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/multicolor_prompt"
-            android:textAppearance="?android:attr/textAppearanceMedium">
-        </TextView>
+            <Space
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
 
-        <Spinner
-            android:id="@+id/MulticolorSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/multicolor_mode"
-            android:prompt="@string/multicolor_prompt"/>
+            <Button
+                android:id="@+id/SettingsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/settings"
+                android:onClick="onSettingsButton" />
 
-        <Button
-            android:id="@+id/StartButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/start"
-            android:onClick="onStartButton" />
+            <Space
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
 
-        <Button
-            android:id="@+id/SettingsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/settings"
-            android:onClick="onSettingsButton" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/AboutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/about"
+                android:onClick="onAboutButton" />
+
+            <Space
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/StartButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/start"
+                android:onClick="onStartButton" />
+
+            <Space
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+</LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

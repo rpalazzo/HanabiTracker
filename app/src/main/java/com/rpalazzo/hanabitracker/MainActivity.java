@@ -6,14 +6,21 @@
 package com.rpalazzo.hanabitracker;
 
 import android.content.Intent;
+import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,19 +32,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
-/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-
 
     }
 
@@ -63,15 +57,15 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onAboutButton(View view) {
+        return;
+    }
 
     public void onStartButton(View view) {
 
         Log.v("MainActivity","Entering");
 
-        Spinner noCards = (Spinner) findViewById(R.id.CardsSpinner);
         int nCards = noCards.getSelectedItemPosition();
-
-        Spinner MulticolorMode = (Spinner) findViewById(R.id.MulticolorSpinner);
         int nMulticolorMode = MulticolorMode.getSelectedItemPosition();
 
         Intent intent = new Intent(this, TrackerActivity.class);

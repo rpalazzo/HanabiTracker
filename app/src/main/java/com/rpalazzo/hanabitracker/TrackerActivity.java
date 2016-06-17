@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.test.RenamingDelegatingContext;
 import android.util.Log;
@@ -18,12 +19,14 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class TrackerActivity extends AppCompatActivity {
+public class TrackerActivity extends AppCompatActivity
+                            implements AnnotationFragment.AnnotationListener {
 
     private int nCards;
     private int MulticolorMode;
@@ -57,6 +60,8 @@ public class TrackerActivity extends AppCompatActivity {
     private TextView textViewNeg4;
     private TextView textViewNeg5;
 
+    private int annotatedCard;
+
 
     public enum SELECTION_MODE {
         NONE, CARD, CLUE
@@ -86,7 +91,7 @@ public class TrackerActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         */
 
-        // Layout 4 or 5 cards
+        // Layout 4 or 5 cards;  if 4 cards the oldest column is never used, so collapse it
         nCards = getIntent().getIntExtra("nCards", 0);
         if (nCards == 0) {
             tl = (TableLayout) findViewById(R.id.tableLayout1);
@@ -143,17 +148,97 @@ public class TrackerActivity extends AppCompatActivity {
         paint();
 
 
-        /*buttonCard1.setOnLongClickListener(new View.OnLongClickListener() {
+        buttonCard1.setOnLongClickListener(new View.OnLongClickListener() {
            public boolean onLongClick(View v) {
-               longclick();
+               longclick(0);
                return true;
            }
-       });*/
+        });
+
+        buttonCard2.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                longclick(1);
+                return true;
+            }
+        });
+
+        buttonCard3.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                longclick(2);
+                return true;
+            }
+        });
+
+        buttonCard4.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                longclick(3);
+                return true;
+            }
+        });
+
+        buttonCard5.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                longclick(4);
+                return true;
+            }
+        });
 
         Log.v("TrackerActivity","Exiting");
     }
 
-    //void longclick() {}
+    void longclick(int i) {
+
+        annotatedCard = i;
+
+        DialogFragment newFragment = new AnnotationFragment();
+        newFragment.show(getSupportFragmentManager(), "AnnotationTag");
+    }
+
+    @Override
+    public void onAnnotation(int which) {
+        //Toast.makeText(this, "card "+ annotatedCard + " set to " +  which, Toast.LENGTH_LONG).show();
+
+        cleanupMulticardRainbow();
+        pushCardstoUndoStack();
+
+        switch (which) {
+            case 0:
+                cardArrayList.get(annotatedCard).setRank(1);
+                break;
+            case 1:
+                cardArrayList.get(annotatedCard).setRank(2);
+                break;
+            case 2:
+                cardArrayList.get(annotatedCard).setRank(3);
+                break;
+            case 3:
+                cardArrayList.get(annotatedCard).setRank(4);
+                break;
+            case 4:
+                cardArrayList.get(annotatedCard).setRank(5);
+                break;
+            case 5:
+                cardArrayList.get(annotatedCard).setSuit(Card.Color.RED);
+                break;
+            case 6:
+                cardArrayList.get(annotatedCard).setSuit(Card.Color.YELLOW);
+                break;
+            case 7:
+                cardArrayList.get(annotatedCard).setSuit(Card.Color.BLUE);
+                break;
+            case 8:
+                cardArrayList.get(annotatedCard).setSuit(Card.Color.WHITE);
+                break;
+            case 9:
+                cardArrayList.get(annotatedCard).setSuit(Card.Color.GREEN);
+                break;
+            case 10:
+                cardArrayList.get(annotatedCard).setSuit(Card.Color.MULTICOLOR);
+                break;
+        }
+        paint();
+    }
+
 
     public void onDel1(View view) { onDel(0); }
     public void onDel2(View view) { onDel(1); }
