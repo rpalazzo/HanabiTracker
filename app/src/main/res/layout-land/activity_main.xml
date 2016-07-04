@@ -134,6 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:drawableLeft="@drawable/ic_settings_black_24dp"
                 android:text="@string/settings"
                 android:onClick="onSettingsButton" />
 
@@ -147,6 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:drawableLeft="@drawable/ic_info_black_24dp"
                 android:text="@string/about"
                 android:onClick="onAboutButton" />
 
@@ -160,6 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:drawableLeft="@drawable/ic_play_arrow_black_24dp"
                 android:text="@string/start"
                 android:onClick="onStartButton" />
 

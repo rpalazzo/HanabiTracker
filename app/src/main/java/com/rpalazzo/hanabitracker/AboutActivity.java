@@ -24,6 +24,7 @@ public class AboutActivity extends AppCompatActivity {
     String htmlText = "<html> <strong>About Hanabi Tracker</strong> " +
             "<p>Under Construction" +
             "<p>Long press to annotate a card without changing the negative information of other cards.</p>" +
+            "<p><a href=\"http://google.github.io/material-design-icons/\">Material Design Icons</a> by Google. Used without modification under the <a href=\"https://creativecommons.org/licenses/by/4.0/legalcode\">Creative Common Attribution 4.0 International License (CC-BY 4.0)</a>.</p>" +
             "<p>Copyright R. Palazzo, 2016. All rights reserved.</p>";
 
     @Override

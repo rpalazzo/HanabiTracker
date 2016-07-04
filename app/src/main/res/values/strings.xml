@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="no_cards_prompt">Number of cards</string>
     <string name="multicolor_prompt">Multicolor</string>
+    <string name="delete">Remove</string>
     <string name="negative_info_prefix">NOT: </string>
     <string name="one_symbol">1</string>
     <string name="two_symbol">2</string>
