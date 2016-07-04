@@ -22,6 +22,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -694,8 +699,6 @@ public class TrackerActivity extends AppCompatActivity
                 //cardArrayList.add(new Card(undoStack.pop()));
                 cardArrayList.add(0, temp);
             }
-
-            paint();
         }
         else {
             errorFeedback();
@@ -708,6 +711,8 @@ public class TrackerActivity extends AppCompatActivity
         for (int i = 0; i < 5; i++) {
             cardArrayList.get(i).setSelected(Boolean.FALSE);
         }
+
+        paint();
     }
 
 
@@ -816,4 +821,56 @@ public class TrackerActivity extends AppCompatActivity
             }
         }
     }
+/*
+    @Override
+    public void onStop() {
+        super.onStop();  // Always call the superclass method first
+
+        try
+        {
+            FileOutputStream fos = new FileOutputStream("tracker_state.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            for (Card c : cardArrayList) {
+                oos.writeObject(c);
+            }
+            oos.close();
+            fos.close();
+        }catch(IOException i)
+        {
+            i.printStackTrace();
+        }
+
+
+        Toast.makeText(this, "onStop()", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();  // Always call the superclass method first
+
+        try
+        {
+            FileInputStream fin = new FileInputStream("tracker_state.ser");
+            ObjectInputStream oin = new ObjectInputStream(fin);
+
+
+            e = (Employee) in.readObject();
+            oin.close();
+            fin.close();
+        }catch(IOException i)
+        {
+            i.printStackTrace();
+            return;
+        }catch(ClassNotFoundException c)
+        {
+            System.out.println("Employee class not found");
+            c.printStackTrace();
+            return;
+        }
+
+        Toast.makeText(this, "onStart()", Toast.LENGTH_LONG).show();
+
+
+    }
+    */
 }

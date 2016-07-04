@@ -136,37 +136,37 @@
 
                 <TextView
                     android:id="@+id/text_negative1"
-                    android:text="Not: 3WR"
+                    android:text=""
                     android:layout_width="0dp"
-                    android:layout_gravity=""
+                    android:gravity="center"
                     android:layout_weight=".2"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
                 <TextView
                     android:id="@+id/text_negative2"
-                    android:text="Not: 3WR"
+                    android:text=""
                     android:layout_width="0dp"
-                    android:layout_gravity=""
+                    android:gravity="center"
                     android:layout_weight=".2"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
                 <TextView
                     android:id="@+id/text_negative3"
-                    android:text="Not: 3WR"
+                    android:text=""
                     android:layout_width="0dp"
-                    android:layout_gravity=""
+                    android:gravity="center"
                     android:layout_weight=".2"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
                 <TextView
                     android:id="@+id/text_negative4"
-                    android:text="Not: 3WR"
+                    android:text=""
                     android:layout_width="0dp"
-                    android:layout_gravity=""
+                    android:gravity="center"
                     android:layout_weight=".2"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
                 <TextView
                     android:id="@+id/text_negative5"
-                    android:text="Not: 3WR"
+                    android:text=""
                     android:layout_width="0dp"
-                    android:layout_gravity=""
+                    android:gravity="center"
                     android:layout_weight=".2"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 

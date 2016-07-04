@@ -3,6 +3,18 @@
     <string name="action_settings">Settings</string>
     <string name="no_cards_prompt">Number of cards</string>
     <string name="multicolor_prompt">Multicolor</string>
+    <string name="negative_info_prefix">NOT: </string>
+    <string name="one_symbol">1</string>
+    <string name="two_symbol">2</string>
+    <string name="three_symbol">3</string>
+    <string name="four_symbol">4</string>
+    <string name="five_symbol">5</string>
+    <string name="red_symbol">R</string>
+    <string name="yellow_symbol">Y</string>
+    <string name="blue_symbol">B</string>
+    <string name="white_symbol">W</string>
+    <string name="green_symbol">G</string>
+    <string name="multicolor_symbol">M</string>
     <string-array name="no_cards">
         <item>4 cards</item>
         <item>5 cards</item>

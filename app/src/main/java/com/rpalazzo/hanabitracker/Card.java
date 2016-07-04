@@ -11,7 +11,7 @@ import android.support.annotation.BoolRes;
 import com.rpalazzo.hanabitracker.R;
 
 
-public class Card {
+public class Card implements java.io.Serializable {
 
     private int rank;  // 0 = unknown, 1-5
     private Color suit;
@@ -783,22 +783,22 @@ public class Card {
         NegativeInfo = "";
 
         if (rank == 0) {
-            if (isNotOne) { NegativeInfo += "1"; }
-            if (isNotTwo) { NegativeInfo += "2"; }
+            if (isNotOne)   { NegativeInfo += "1"; }
+            if (isNotTwo)   { NegativeInfo += "2"; }
             if (isNotThree) { NegativeInfo += "3"; }
-            if (isNotFour) { NegativeInfo += "4"; }
-            if (isNotFive) { NegativeInfo += "5"; }
+            if (isNotFour)  { NegativeInfo += "4"; }
+            if (isNotFive)  { NegativeInfo += "5"; }
         }
         if (suit == Color.UNKNOWN) {
-            if (isNotRed) { NegativeInfo += "R"; }
-            if (isNotYellow) { NegativeInfo += "Y"; }
-            if (isNotBlue) { NegativeInfo += "B"; }
-            if (isNotWhite) { NegativeInfo += "W"; }
-            if (isNotGreen) { NegativeInfo += "G"; }
+            if (isNotRed)        { NegativeInfo += "R"; }
+            if (isNotYellow)     { NegativeInfo += "Y"; }
+            if (isNotBlue)       { NegativeInfo += "B"; }
+            if (isNotWhite)      { NegativeInfo += "W"; }
+            if (isNotGreen)      { NegativeInfo += "G"; }
             if (isNotMulticolor) { NegativeInfo += "M"; }
         }
         if (NegativeInfo.length() != 0) {
-            NegativeInfo = "   NOT:  " + NegativeInfo;
+            NegativeInfo = "NOT: " + NegativeInfo;
         }
 
         return NegativeInfo;
