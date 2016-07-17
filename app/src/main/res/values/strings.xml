@@ -81,5 +81,37 @@
     <string name="title_activity_settings">Settings</string>
 
 
+    <string name="about_text"><![CDATA[
+        <html>
+            <p>Hanabi Tracker records clue information in the game Hanabi; it is not an implementation of the game itself.</p>
+
+<p><b>Title screen</b></p>
+<p>From the title screen, choose the number of cards and multicolor option for each game.</p>
+
+<p>Multicolor options:<br>
+<ul><li>None - There is no multicolor clue button nor are there multicolor cards.</li>
+<li>Distinct color - The multicolor clue button is used to mark cards as multicolored.</li>
+<li>All colors - There is no multicolor clue button and cards that could possibly be multicolored are marked with an icon in the lower right corner of the card.  Once a given card is clued with different colors, that card is marked as multicolor and the icon is removed.</li></ul></p>
+
+<p><b>Settings screen</b></p>
+<p>Negative Info is inferred from clues that are given about other cards.   For example, if you receive a clue that your first card is red, then your other cards are necessarily not red.  This negative information can be hidden or displayed below each card.</p>
+
+<p>Cards Shift Direction controls to which end new cards are added and the direction the other cards shift when a card is removed.</p>
+
+<p><b>Play screen</b></p>
+<p>There are two ways to mark cards with clues: 1) Tap one or more cards and then tap a clue, or 2) tap a clue and then tap one or more cards.  Using the second option, the clue button will remain highlighted until another clue is selected.</p>
+
+<p>When a card is played or discarded, tap the Remove button above the corresponding card.  A new card is automatically added.</p>
+
+<p>The Undo button will rollback clue or remove actions.  The Undo button may be used repeatedly to undo multiple actions.</p>
+
+<p>Long-press a card to display the Annotate Card pop-up.  This pop-up allows you to update the number or color of a card without affecting the negative information of the other cards.  This option is useful when displaying negative info and you deduce information about a card without receiving a clue.<br></p>
+
+<p><small><a href="https://github.com/google/material-design-icons">Material Design Icons</a> by Google.  Used without modification under the <a href="https://creativecommons.org/licenses/by/4.0/legalcode">Creative Commons Attribution 4.0 International License (CC-BY-4.0)</a>.</small></p>
+
+<p><small>Hanabi Tracker Copyright R. Palazzo, 2016.</small></p>
+
+        </html>]]>
+    </string>
 
 </resources>

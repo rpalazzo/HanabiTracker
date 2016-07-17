@@ -16,21 +16,27 @@ public class AboutActivity extends AppCompatActivity {
     }
     */
 
-    WebView webView;
-    String mimeType = "text/html";
-    String encoding = "utf-8";
 
 
-    String htmlText = "<html> <strong>About Hanabi Tracker</strong> " +
+    /*
+            "<html> <strong>About Hanabi Tracker</strong> " +
             "<p>Under Construction" +
             "<p>Long press to annotate a card without changing the negative information of other cards.</p>" +
             "<p><a href=\"http://google.github.io/material-design-icons/\">Material Design Icons</a> by Google. Used without modification under the <a href=\"https://creativecommons.org/licenses/by/4.0/legalcode\">Creative Common Attribution 4.0 International License (CC-BY 4.0)</a>.</p>" +
             "<p>Hanabi Tracker App Copyright R. Palazzo, 2016. All rights reserved.</p>";
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        WebView webView;
+        String mimeType = "text/html";
+        String encoding = "utf-8";
+
+
+        String htmlText =  getString(R.string.about_text);
 
         webView = (WebView)findViewById(R.id.webview);
         webView.loadData(htmlText, mimeType, encoding);
