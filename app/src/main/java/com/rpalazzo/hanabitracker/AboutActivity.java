@@ -1,3 +1,9 @@
+/* Copyright 2016 Robert Palazzo <rpalazzo@gmail.com>
+ * Proprietary and confidential
+ * Copying of this file without express written consent is prohibited.
+ */
+
+
 package com.rpalazzo.hanabitracker;
 
 import android.content.Intent;
@@ -8,23 +14,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class AboutActivity extends AppCompatActivity {
-
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
-    }
-    */
-
-
-
-    /*
-            "<html> <strong>About Hanabi Tracker</strong> " +
-            "<p>Under Construction" +
-            "<p>Long press to annotate a card without changing the negative information of other cards.</p>" +
-            "<p><a href=\"http://google.github.io/material-design-icons/\">Material Design Icons</a> by Google. Used without modification under the <a href=\"https://creativecommons.org/licenses/by/4.0/legalcode\">Creative Common Attribution 4.0 International License (CC-BY 4.0)</a>.</p>" +
-            "<p>Hanabi Tracker App Copyright R. Palazzo, 2016. All rights reserved.</p>";
-    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

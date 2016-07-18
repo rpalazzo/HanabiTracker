@@ -12,21 +12,11 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.test.RenamingDelegatingContext;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -84,17 +74,6 @@ public class TrackerActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracker);
 
-        Log.v("TrackerActivity","Entering");
-
-
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
-
-        /*requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        */
 
         // Layout 4 or 5 cards;  if 4 cards the oldest column is never used, so collapse it
         nCards = getIntent().getIntExtra("nCards", 0);
@@ -121,8 +100,6 @@ public class TrackerActivity extends AppCompatActivity
         // Populate cardArrayList with new cards
         for (int i = 0; i < 5; i++) {
             com.rpalazzo.hanabitracker.Card c = new com.rpalazzo.hanabitracker.Card(MulticolorMode);
-            //c.setRank(0);
-            //c.setSuit(com.rpalazzo.hanabitracker.Card.Color.UNKNOWN);
             cardArrayList.add(c);
         }
 
@@ -188,7 +165,6 @@ public class TrackerActivity extends AppCompatActivity
             }
         });
 
-        Log.v("TrackerActivity","Exiting");
     }
 
     void longclick(int i) {
@@ -201,7 +177,6 @@ public class TrackerActivity extends AppCompatActivity
 
     @Override
     public void onAnnotation(int which) {
-        //Toast.makeText(this, "card "+ annotatedCard + " set to " +  which, Toast.LENGTH_LONG).show();
 
         cleanupMulticardRainbow();
         pushCardstoUndoStack();
@@ -696,7 +671,6 @@ public class TrackerActivity extends AppCompatActivity
             cardArrayList.clear();
             for (int i = 0; i < 5; i++) {
                 Card temp = new Card(undoStack.pop());
-                //cardArrayList.add(new Card(undoStack.pop()));
                 cardArrayList.add(0, temp);
             }
         }
@@ -821,56 +795,4 @@ public class TrackerActivity extends AppCompatActivity
             }
         }
     }
-/*
-    @Override
-    public void onStop() {
-        super.onStop();  // Always call the superclass method first
-
-        try
-        {
-            FileOutputStream fos = new FileOutputStream("tracker_state.ser");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            for (Card c : cardArrayList) {
-                oos.writeObject(c);
-            }
-            oos.close();
-            fos.close();
-        }catch(IOException i)
-        {
-            i.printStackTrace();
-        }
-
-
-        Toast.makeText(this, "onStop()", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();  // Always call the superclass method first
-
-        try
-        {
-            FileInputStream fin = new FileInputStream("tracker_state.ser");
-            ObjectInputStream oin = new ObjectInputStream(fin);
-
-
-            e = (Employee) in.readObject();
-            oin.close();
-            fin.close();
-        }catch(IOException i)
-        {
-            i.printStackTrace();
-            return;
-        }catch(ClassNotFoundException c)
-        {
-            System.out.println("Employee class not found");
-            c.printStackTrace();
-            return;
-        }
-
-        Toast.makeText(this, "onStart()", Toast.LENGTH_LONG).show();
-
-
-    }
-    */
 }

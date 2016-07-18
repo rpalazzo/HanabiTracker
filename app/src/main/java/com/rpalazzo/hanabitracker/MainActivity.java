@@ -6,27 +6,16 @@
 package com.rpalazzo.hanabitracker;
 
 import android.content.Intent;
-import android.database.DataSetObserver;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Spinner noCards;
-    private Spinner MulticolorMode;
-    private Button startButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
