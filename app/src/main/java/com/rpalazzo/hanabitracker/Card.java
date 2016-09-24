@@ -33,6 +33,10 @@ public class Card implements java.io.Serializable {
     private Rainbow rainbowState;
     private Boolean dirtyFlag; //used to track rainbows in multi-card clues
 
+    //serialVersionUID is used to verify that the sender and receiver of a serialized object are compatible
+    //see https://developer.android.com/reference/java/io/Serializable.html
+    private static final long serialVersionUID = 1L;
+
     public enum Color {
         UNKNOWN, RED, YELLOW, BLUE, WHITE, GREEN, MULTICOLOR
     }

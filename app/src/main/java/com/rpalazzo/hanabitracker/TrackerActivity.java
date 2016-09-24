@@ -17,6 +17,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -69,10 +77,31 @@ public class TrackerActivity extends AppCompatActivity
     private CLUE_SELECTION clueSelection;
 
 
+
+    /* TrackerActivity LIFE CYCLE NOTES
+     *
+     * OnCreate() checks for existance of "hand" file.
+     *  if file exists, do nothing - it will be read in onStart()
+     *  else if file does not exist, populate it with default (unknown) cards
+     *
+     * OnStart() always loads "hand" file.  It will have been created either in OnCreate() or onStop()
+     *
+     * OnBackPressed() is called before OnStop()
+     *   reset the hand; populate with default (unknown) cards
+     *
+     * OnStop() creates/overwrites "hand" file with serialized cards
+     *   If called after OnBackPressed(), the hand will contain default (unknown) cards
+     *   Otherwise (called by OS), hand will contain the existing cards
+     */
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracker);
+
+        //Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
 
 
         // Layout 4 or 5 cards;  if 4 cards the oldest column is never used, so collapse it
@@ -97,11 +126,28 @@ public class TrackerActivity extends AppCompatActivity
             multicolorButton.setVisibility(View.GONE);
         }
 
-        // Populate cardArrayList with new cards
-        for (int i = 0; i < 5; i++) {
-            com.rpalazzo.hanabitracker.Card c = new com.rpalazzo.hanabitracker.Card(MulticolorMode);
-            cardArrayList.add(c);
+
+        // Serialized cards are stored in "hand" file
+        File file = new File(getFilesDir(), "hand");
+        if(file.exists()) {
+            // do nothing; file will be read in OnStart()
         }
+        else {
+            // create file and populate with default (unknown) cards
+            try {
+                FileOutputStream fos = openFileOutput("hand", Context.MODE_PRIVATE);
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                for (int i = 0; i < 5; i++) {
+                    Card c = new Card(MulticolorMode);
+                    os.writeObject(c);
+                }
+                os.close();
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         currentSelectionMode = SELECTION_MODE.NONE;
         clueSelection = CLUE_SELECTION.NONE;
@@ -127,7 +173,6 @@ public class TrackerActivity extends AppCompatActivity
         buttonClueWhite = (ImageButton)findViewById(R.id.button_clueWhite);
         buttonClueGreen = (ImageButton)findViewById(R.id.button_clueGreen);
         buttonClueMulticolor = (ImageButton)findViewById(R.id.button_clueMulticolor);
-        paint();
 
 
         buttonCard1.setOnLongClickListener(new View.OnLongClickListener() {
@@ -164,6 +209,68 @@ public class TrackerActivity extends AppCompatActivity
                 return true;
             }
         });
+
+    }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        //Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
+
+        try {
+            FileOutputStream fos = openFileOutput("hand", Context.MODE_PRIVATE);
+            ObjectOutputStream os = new ObjectOutputStream(fos);
+            for (Card card : cardArrayList) {
+                os.writeObject(card);
+            }
+            os.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onStart() {  // called after onCreate()
+        super.onStart();
+
+        //Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
+
+        cardArrayList.clear();
+
+        try {
+            FileInputStream fis = openFileInput("hand");
+            ObjectInputStream is = new ObjectInputStream(fis);
+
+            for (int i = 0; i < 5; i++) {
+                Card temp = new Card(MulticolorMode);
+                temp  = (Card) is.readObject();
+                cardArrayList.add(i, temp);
+            }
+
+            is.close();
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        paint();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        //Toast.makeText(getApplicationContext(), "onBackPressed()", Toast.LENGTH_SHORT).show();
+
+        for (int i = 0; i < 5; i++) {
+            Card c = new Card(MulticolorMode);
+            cardArrayList.add(i, c);
+        }
 
     }
 
@@ -369,6 +476,10 @@ public class TrackerActivity extends AppCompatActivity
                     }
                 }
             }
+
+
+            //TODO: Bug: selecting color then card does not set negative information for other cards.  (Selecting number then card does work)
+
 
             // While cluing multiple cards, cards after the first will be marked PENDING_NOT_RAINBOW.
             // If these cards are subsequently selected, reset them to POSSIBLE_RAINBOW.
@@ -795,4 +906,5 @@ public class TrackerActivity extends AppCompatActivity
             }
         }
     }
+
 }

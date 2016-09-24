@@ -107,11 +107,15 @@
 
 <p>Long-press a card to display the Annotate Card pop-up.  This pop-up allows you to update the number or color of a card without affecting the negative information of the other cards.  This option is useful when displaying negative info and you deduce information about a card without receiving a clue.<br></p>
 
+<p><b>Contact</b></p>
+You can report bugs and request enhancements at hanabitracker@gmail.com.
+If you find this app useful, please rate it on <a href="https://play.google.com/store/apps/details?id=com.rpalazzo.hanabitracker">Google Play</a>.
+
 <p><small><a href="https://github.com/google/material-design-icons">Material Design Icons</a> by Google.  Used without modification under the <a href="https://creativecommons.org/licenses/by/4.0/legalcode">Creative Commons Attribution 4.0 International License (CC-BY-4.0)</a>.</small></p>
 
 <p><small>Hanabi Tracker Copyright R. Palazzo, 2016.</small></p>
 
-        </html>]]>
+</html>]]>
     </string>
 
 </resources>
