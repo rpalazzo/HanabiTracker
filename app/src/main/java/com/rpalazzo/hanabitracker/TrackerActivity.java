@@ -65,6 +65,8 @@ public class TrackerActivity extends AppCompatActivity
 
     private int annotatedCard;
 
+    private Boolean onBackPressed;
+
 
     public enum SELECTION_MODE {
         NONE, CARD, CLUE
@@ -80,20 +82,18 @@ public class TrackerActivity extends AppCompatActivity
 
     /* TrackerActivity LIFE CYCLE NOTES
      *
-     * OnCreate() checks for existance of "hand" file.
-     *  if file exists, do nothing - it will be read in onStart()
-     *  else if file does not exist, populate it with default (unknown) cards
+     * https://docs.google.com/presentation/d/1IozN-ldJPyIA6Hq8pU29bQPm_tBWegKkh_iMmSRfM8E/edit#slide=id.p
      *
-     * OnStart() always loads "hand" file.  It will have been created either in OnCreate() or onStop()
+     * OnCreate() - if hand file does not exist, create it;
+     *              else do nothing
      *
-     * OnBackPressed() is called before OnStop()
-     *   reset the hand; populate with default (unknown) cards
+     * OnStart() - read hand file; set onBackPressed false
      *
-     * OnStop() creates/overwrites "hand" file with serialized cards
-     *   If called after OnBackPressed(), the hand will contain default (unknown) cards
-     *   Otherwise (called by OS), hand will contain the existing cards
+     * OnBackPressed() - Set onBackPressed true
+     *
+     * OnStop() - if onBackPressed, delete file
+     *            else (over)write file
      */
-
 
 
     @Override
@@ -127,13 +127,13 @@ public class TrackerActivity extends AppCompatActivity
         }
 
 
-        // Serialized cards are stored in "hand" file
+        // If hand file exists, do nothing -- previously written file will be read in OnStart()
+        // Else write hand file with all default (unknown) cards
         File file = new File(getFilesDir(), "hand");
         if(file.exists()) {
-            // do nothing; file will be read in OnStart()
+            // do nothing
         }
         else {
-            // create file and populate with default (unknown) cards
             try {
                 FileOutputStream fos = openFileOutput("hand", Context.MODE_PRIVATE);
                 ObjectOutputStream os = new ObjectOutputStream(fos);
@@ -214,29 +214,12 @@ public class TrackerActivity extends AppCompatActivity
 
 
     @Override
-    public void onStop() {
-        super.onStop();
-
-        //Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
-
-        try {
-            FileOutputStream fos = openFileOutput("hand", Context.MODE_PRIVATE);
-            ObjectOutputStream os = new ObjectOutputStream(fos);
-            for (Card card : cardArrayList) {
-                os.writeObject(card);
-            }
-            os.close();
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onStart() {  // called after onCreate()
+    public void onStart() {  // called after onCreate() and when restarting after OS-caused stop
         super.onStart();
 
         //Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
+
+        onBackPressed = false;
 
         cardArrayList.clear();
 
@@ -261,18 +244,43 @@ public class TrackerActivity extends AppCompatActivity
         paint();
     }
 
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
 
         //Toast.makeText(getApplicationContext(), "onBackPressed()", Toast.LENGTH_SHORT).show();
+        onBackPressed = true;
 
-        for (int i = 0; i < 5; i++) {
-            Card c = new Card(MulticolorMode);
-            cardArrayList.add(i, c);
-        }
 
     }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        //Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
+
+        if (onBackPressed) {
+            File file = new File(getFilesDir(), "hand");
+            file.delete();
+        }
+        else {
+            try {
+                FileOutputStream fos = openFileOutput("hand", Context.MODE_PRIVATE);
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                for (Card card : cardArrayList) {
+                    os.writeObject(card);
+                }
+                os.close();
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     void longclick(int i) {
 
@@ -466,7 +474,7 @@ public class TrackerActivity extends AppCompatActivity
 
             // ... set the negative information for all other cards that are not already this color
             for (int j = 0; j < 5; j++) {
-                if ( j != index && cardArrayList.get(j).getDirtyFlag() == Boolean.FALSE) { // if not this card or already dealt with (dirty)
+                if ((j != index) && (cardArrayList.get(j).getDirtyFlag() == false)) { // if not this card or already dealt with (dirty)
                     if (cardArrayList.get(j).getSuit() != color) {
                         cardArrayList.get(j).setNotColor(color, Boolean.TRUE);
                     }
@@ -504,7 +512,7 @@ public class TrackerActivity extends AppCompatActivity
 
             // ... set the negative information for all other cards that are not already this color
             for (int j = 0; j < 5; j++) {
-                if ( j != index && cardArrayList.get(j).getDirtyFlag() == Boolean.FALSE) {
+                if ( j != index && cardArrayList.get(j).getDirtyFlag() == false) {
                     if (cardArrayList.get(j).getSuit() != color) {
                         cardArrayList.get(j).setNotColor(color, Boolean.TRUE);
                     }
@@ -560,7 +568,7 @@ public class TrackerActivity extends AppCompatActivity
             // verify the clue can be applied to each selected card before beginning
             // to change them.
             for (int j = 0; j < 5; j++) {
-                if (cardArrayList.get(j).getSelected() == Boolean.TRUE) {
+                if (cardArrayList.get(j).getSelected() == true) {
 
                     switch (clue) {
                         case RED:
@@ -661,7 +669,7 @@ public class TrackerActivity extends AppCompatActivity
 
             // Change the selected card(s) to the clued suit or rank
             for (int i = 0; i < 5; i++) {
-                if (cardArrayList.get(i).getSelected() == Boolean.TRUE) {
+                if (cardArrayList.get(i).getSelected() == true) {
 
                     switch (clue) {
                         case RED:
