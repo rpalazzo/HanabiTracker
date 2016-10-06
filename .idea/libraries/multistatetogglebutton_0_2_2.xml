@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="multistatetogglebutton-0.2.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.honorato.multistatetogglebutton/multistatetogglebutton/0.2.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.honorato.multistatetogglebutton/multistatetogglebutton/0.2.2/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.honorato.multistatetogglebutton/multistatetogglebutton/0.2.2/c79db3b4dad9697cbf86f4d37428b3615981407d/multistatetogglebutton-0.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

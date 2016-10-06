@@ -80,6 +80,14 @@
     </string-array>
     <string name="title_activity_settings">Settings</string>
 
+    <string-array name="annotation_array">
+        <item>Yes</item>
+        <item>Unknown</item>
+        <item>No</item>
+    </string-array>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
     <string name="about_text"><![CDATA[
         <html>
@@ -111,11 +119,14 @@
 You can report bugs and request enhancements at hanabitracker@gmail.com.
 If you find this app useful, please rate it on <a href="https://play.google.com/store/apps/details?id=com.rpalazzo.hanabitracker">Google Play</a>.
 
+<p><b>Attribution</b></p>
 <p><small><a href="https://github.com/google/material-design-icons">Material Design Icons</a> by Google.  Used without modification under the <a href="https://creativecommons.org/licenses/by/4.0/legalcode">Creative Commons Attribution 4.0 International License (CC-BY-4.0)</a>.</small></p>
+<p><small><a href="https://github.com/jlhonora/multistatetogglebutton">Multistagetogglebutton</a> Copyright 2013-2015 Jose Honorato. http://honorato.org.  Licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</small></p>
 
-<p><small>Hanabi Tracker Copyright R. Palazzo, 2016.</small></p>
+<p><small>Hanabi Tracker app copyright R. Palazzo, 2016.</small></p>
 
 </html>]]>
     </string>
+    <string name="title_activity_annotation">AnnotationActivity</string>
 
 </resources>

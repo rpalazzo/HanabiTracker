@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:mstb="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    tools:context="com.rpalazzo.hanabitracker.AnnotationActivity">
+
+    <include layout="@layout/content_annotation" />
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/no_cards_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_cards_prompt"
+            android:textAppearance="?android:attr/textAppearanceMedium">
+        </TextView>
+
+        <org.honorato.multistatetogglebutton.MultiStateToggleButton
+            android:id="@+id/mstb_multi_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            mstb:mstbPrimaryColor="@color/colorPrimary"
+            mstb:mstbSecondaryColor="@color/white"
+            mstb:values="@array/annotation_array" />
+
+        <Button
+            android:id="@+id/CancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/cancel"
+            android:onClick="onCancelButton" />
+
+        <Button
+            android:id="@+id/OkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/ok"
+            android:onClick="onOkButton" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
