@@ -80,6 +80,9 @@
     </string-array>
     <string name="title_activity_settings">Settings</string>
 
+
+    <string name="annotation_title">Card Annotation</string>
+
     <string-array name="annotation_array">
         <item>Yes</item>
         <item>Unknown</item>

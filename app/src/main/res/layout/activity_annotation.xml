@@ -18,37 +18,308 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/no_cards_label"
+            android:id="@+id/annotation_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_cards_prompt"
+            android:text="@string/annotation_title"
             android:textAppearance="?android:attr/textAppearanceMedium">
         </TextView>
 
-        <org.honorato.multistatetogglebutton.MultiStateToggleButton
-            android:id="@+id/mstb_multi_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            mstb:mstbPrimaryColor="@color/colorPrimary"
-            mstb:mstbSecondaryColor="@color/white"
-            mstb:values="@array/annotation_array" />
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/tableLayoutAnnotation"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <Button
-            android:id="@+id/CancelButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/cancel"
-            android:onClick="onCancelButton" />
 
-        <Button
-            android:id="@+id/OkButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/ok"
-            android:onClick="onOkButton" />
+            <TableRow
+                android:id="@+id/tableRowAnnotation1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageButton
+                    android:id="@+id/button_ann_red"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cr"
+                    android:background="@null" />
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_ann_red"
+                    android:layout_weight=".33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/annotation_array" />
+
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight=".04"/>
+
+                <ImageButton
+                    android:id="@+id/button_ann_1"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/c1"
+                    android:background="@null" />
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_ann_1"
+                    android:layout_weight=".33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/annotation_array" />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRowAnnotation2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageButton
+                    android:id="@+id/button_ann_yellow"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cy"
+                    android:background="@null" />
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_ann_yellow"
+                    android:layout_weight=".33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/annotation_array" />
+
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight=".04"/>
+
+                <ImageButton
+                    android:id="@+id/button_ann_2"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/c2"
+                    android:background="@null" />
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_ann_2"
+                    android:layout_weight=".33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/annotation_array" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRowAnnotation3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageButton
+                    android:id="@+id/button_ann_blue"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cb"
+                    android:background="@null" />
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_ann_blue"
+                    android:layout_weight=".33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/annotation_array" />
+
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight=".04"/>
+
+                <ImageButton
+                    android:id="@+id/button_ann_3"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/c3"
+                    android:background="@null" />
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_ann_3"
+                    android:layout_weight=".33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/annotation_array" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowAnnotation4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageButton
+                    android:id="@+id/button_ann_white"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cw"
+                    android:background="@null" />
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_ann_white"
+                    android:layout_weight=".33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/annotation_array" />
+
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight=".04"/>
+
+                <ImageButton
+                    android:id="@+id/button_ann_4"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/c4"
+                    android:background="@null" />
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_ann_4"
+                    android:layout_weight=".33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/annotation_array" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowAnnotation5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageButton
+                    android:id="@+id/button_ann_green"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cg"
+                    android:background="@null" />
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_ann_green"
+                    android:layout_weight=".33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/annotation_array" />
+
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight=".04"/>
+
+                <ImageButton
+                    android:id="@+id/button_ann_5"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/c5"
+                    android:background="@null" />
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_ann_5"
+                    android:layout_weight=".33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/annotation_array" />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRowAnnotation6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageButton
+                    android:id="@+id/button_ann_multicolor"
+                    android:layout_weight=".15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cm"
+                    android:background="@null" />
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_ann_multicolor"
+                    android:layout_weight=".33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/annotation_array" />
+
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight=".04"/>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_weight=".48"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/CancelButton"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cancel"
+                        android:onClick="onCancelButton" />
+
+                    <Button
+                        android:id="@+id/OkButton"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ok"
+                        android:onClick="onOkButton" />
+
+
+                </LinearLayout>
+
+
+            </TableRow>
+        </TableLayout>
+
 
     </LinearLayout>
 

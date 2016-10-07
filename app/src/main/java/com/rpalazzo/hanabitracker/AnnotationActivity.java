@@ -38,7 +38,7 @@ public class AnnotationActivity extends AppCompatActivity {
         annotationCard.setRank(5);
         annotationCard.setSuit(Card.Color.RED);
 
-        MultiStateToggleButton button = (MultiStateToggleButton) this.findViewById(R.id.mstb_multi_id);
+        MultiStateToggleButton button = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_1);
         button.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
             @Override
             public void onValueChanged(int position) {
