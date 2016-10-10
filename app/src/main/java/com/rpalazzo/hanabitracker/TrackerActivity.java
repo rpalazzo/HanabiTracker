@@ -30,8 +30,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class TrackerActivity extends AppCompatActivity
-                            implements AnnotationFragment.AnnotationListener {
+public class TrackerActivity extends AppCompatActivity {
 
     private int nCards;
     private int MulticolorMode;
@@ -268,7 +267,6 @@ public class TrackerActivity extends AppCompatActivity
     @Override
     public void onStop() {
         super.onStop();
-
         //Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
         Log.v("HanabiTracker", "Entering TrackerActivity::OnStop()");
 
@@ -301,7 +299,6 @@ public class TrackerActivity extends AppCompatActivity
 
 
     void longclick(int i) {
-
         Log.v("HanabiTracker", "Entering TrackerActivity::longclick()");
 
         cleanupMulticardRainbow();
@@ -311,9 +308,6 @@ public class TrackerActivity extends AppCompatActivity
         intent.putExtra("card", cardArrayList.get(i));
         startActivityForResult(intent, ANNOTATION_REQUEST);
 
-
-        //DialogFragment newFragment = new AnnotationFragment();
-        //newFragment.show(getSupportFragmentManager(), "AnnotationTag");
         Log.v("HanabiTracker", "Exiting TrackerActivity::longclick()");
     }
 
@@ -336,55 +330,6 @@ public class TrackerActivity extends AppCompatActivity
         PreserveHand();
 
         Log.v("HanabiTracker", "Exiting TrackerActivity::OnAcivityResult()");
-    }
-
-
-    //This function will be deprecated once new Annotation Activity is working
-    @Override
-    public void onAnnotation(int which) {
-        Log.v("HanabiTracker", "Entering TrackerActivity::onAnnotation()");
-
-        cleanupMulticardRainbow();
-        pushCardstoUndoStack();
-
-        switch (which) {
-            case 0:
-                cardArrayList.get(annotatedCard).setRank(1);
-                break;
-            case 1:
-                cardArrayList.get(annotatedCard).setRank(2);
-                break;
-            case 2:
-                cardArrayList.get(annotatedCard).setRank(3);
-                break;
-            case 3:
-                cardArrayList.get(annotatedCard).setRank(4);
-                break;
-            case 4:
-                cardArrayList.get(annotatedCard).setRank(5);
-                break;
-            case 5:
-                cardArrayList.get(annotatedCard).setSuit(Card.Color.RED);
-                break;
-            case 6:
-                cardArrayList.get(annotatedCard).setSuit(Card.Color.YELLOW);
-                break;
-            case 7:
-                cardArrayList.get(annotatedCard).setSuit(Card.Color.BLUE);
-                break;
-            case 8:
-                cardArrayList.get(annotatedCard).setSuit(Card.Color.WHITE);
-                break;
-            case 9:
-                cardArrayList.get(annotatedCard).setSuit(Card.Color.GREEN);
-                break;
-            case 10:
-                cardArrayList.get(annotatedCard).setSuit(Card.Color.MULTICOLOR);
-                break;
-        }
-        paint();
-
-        Log.v("HanabiTracker", "Exiting TrackerActivity::onAnnotation()");
     }
 
 

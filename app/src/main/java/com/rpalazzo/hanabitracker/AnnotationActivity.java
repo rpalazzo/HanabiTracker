@@ -13,7 +13,6 @@ import android.widget.ToggleButton;
 
 import org.honorato.multistatetogglebutton.MultiStateToggleButton;
 
-import java.util.List;
 
 public class AnnotationActivity extends AppCompatActivity {
 
@@ -38,92 +37,16 @@ public class AnnotationActivity extends AppCompatActivity {
         annotationCard =  (Card) getIntent().getSerializableExtra("card");
 
         button1 = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_1);
-       /* button1.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int position) {
-                ChangeRank(button1, position);
-            }
-        });*/
-
         button2 = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_2);
-        /*button2.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int position) {
-                ChangeRank(button2, position);
-            }
-        });*/
-
         button3 = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_3);
-        /*button3.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int position) {
-                ChangeRank(button3, position);
-            }
-        });*/
-
         button4 = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_4);
-        /*button4.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int position) {
-                ChangeRank(button4, position);
-            }
-        });*/
-
         button5 = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_5);
-        /*button5.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int position) {
-                ChangeRank(button5, position);
-            }
-        });*/
-
         buttonRed = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_red);
-        /*buttonRed.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int position) {
-                ChangeSuit(buttonRed, position);
-            }
-        });*/
-
         buttonYellow = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_yellow);
-        /*buttonYellow.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int position) {
-                ChangeSuit(buttonYellow, position);
-            }
-        });*/
-
         buttonBlue = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_blue);
-        /*buttonBlue.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int position) {
-                ChangeSuit(buttonBlue, position);
-            }
-        });*/
-
         buttonWhite = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_white);
-        /*buttonWhite.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int position) {
-                ChangeSuit(buttonWhite, position);
-            }
-        });*/
-
         buttonGreen = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_green);
-        /*buttonGreen.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int position) {
-                ChangeSuit(buttonGreen, position);
-            }
-        });*/
-
         buttonMulti = (MultiStateToggleButton) this.findViewById(R.id.mstb_ann_multicolor);
-        /*buttonMulti.setOnValueChangedListener(new MultiStateToggleButton.OnValueChangedListener() {
-            @Override
-            public void onValueChanged(int position) {
-                ChangeSuit(buttonMulti, position);
-            }
-        });*/
 
 
         // Initialize all buttons to "Unknown" state
@@ -220,9 +143,6 @@ public class AnnotationActivity extends AppCompatActivity {
     }
 
 
-
-
-
     public void onOkButton (View view) {
         Intent resultIntent = new Intent();
 
@@ -256,9 +176,11 @@ public class AnnotationActivity extends AppCompatActivity {
         if (buttonGreen.getValue() == 2 ) { annotationCard.setNotGreen(true); }
         else { annotationCard.setNotGreen(false); }
 
-        if (buttonMulti.getValue() == 2 ) { annotationCard.setNotMulticolor(true); }
+        if (buttonMulti.getValue() == 2 ) {
+            annotationCard.setNotMulticolor(true);
+            annotationCard.setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
+        }
         else { annotationCard.setNotMulticolor(false); }
-        //todo: setMulticolor flags
 
 
         int rankYesCount = 0;
@@ -320,6 +242,9 @@ public class AnnotationActivity extends AppCompatActivity {
         else {
             annotationCard.setRank(rank);
             annotationCard.setSuit(suit);
+            if (suit == Card.Color.MULTICOLOR) {
+                annotationCard.setRainbowState(Card.Rainbow.IS_RAINBOW);
+            }
 
             resultIntent.putExtra("card", annotationCard);
             setResult(0, resultIntent);
