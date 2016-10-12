@@ -140,6 +140,14 @@ public class AnnotationActivity extends AppCompatActivity {
                 buttonMulti.setValue(0);
                 break;
         }
+
+        /* This block will disable buttonMulti for both Multicolor mode "None" and "Distinct".  Unfortunately we want it enabled for "Distinct"
+        if (annotationCard.getRainbowState() == Card.Rainbow.NA_RAINBOW) {
+            buttonMulti.setEnabled(false);
+            //boolean[] states = {false, false, false};
+            //buttonMulti.setStates(states);
+            buttonMulti.setColors(0xDCDCDC, 0xDCDCDC);
+        }*/
     }
 
 
@@ -178,9 +186,19 @@ public class AnnotationActivity extends AppCompatActivity {
 
         if (buttonMulti.getValue() == 2 ) {
             annotationCard.setNotMulticolor(true);
-            annotationCard.setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
+            if (annotationCard.getRainbowState() != Card.Rainbow.NA_RAINBOW) {
+                annotationCard.setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
+            }
         }
-        else { annotationCard.setNotMulticolor(false); }
+        else if (buttonMulti.getValue() == 1 && annotationCard.getRainbowState() != Card.Rainbow.NA_RAINBOW) {
+            annotationCard.setNotMulticolor(false);
+            if (annotationCard.getRainbowState() != Card.Rainbow.NA_RAINBOW) {
+                annotationCard.setRainbowState(Card.Rainbow.POSSIBLE_RAINBOW);
+            }
+        }
+        else {
+            annotationCard.setNotMulticolor(false);
+        }
 
 
         int rankYesCount = 0;
@@ -242,7 +260,7 @@ public class AnnotationActivity extends AppCompatActivity {
         else {
             annotationCard.setRank(rank);
             annotationCard.setSuit(suit);
-            if (suit == Card.Color.MULTICOLOR) {
+            if (suit == Card.Color.MULTICOLOR && annotationCard.getRainbowState() != Card.Rainbow.NA_RAINBOW) {
                 annotationCard.setRainbowState(Card.Rainbow.IS_RAINBOW);
             }
 
