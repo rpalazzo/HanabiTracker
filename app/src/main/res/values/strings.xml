@@ -116,7 +116,7 @@
 
 <p>The Undo button will rollback clue or remove actions.  The Undo button may be used repeatedly to undo multiple actions.</p>
 
-<p>Long-press a card to display the Annotate Card pop-up.  This pop-up allows you to update the number or color of a card without affecting the negative information of the other cards.  This option is useful when displaying negative info and you deduce information about a card without receiving a clue.<br></p>
+<p>Long-press a card to display the Card Annotation screen.  This screen allows you to update the number or color attributes of a card without affecting the negative information of the other cards.  This option is useful when displaying negative info and you deduce information about a card without receiving a clue.<br></p>
 
 <p><b>Contact</b></p>
 You can report bugs and request enhancements at hanabitracker@gmail.com.
