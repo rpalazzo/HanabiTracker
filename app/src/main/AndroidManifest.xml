@@ -37,6 +37,7 @@
         <activity
             android:name=".AnnotationActivity"
             android:label="@string/title_activity_annotation"
+            android:screenOrientation="landscape"
             android:parentActivityName=".TrackerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

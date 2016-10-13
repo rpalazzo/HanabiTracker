@@ -277,4 +277,12 @@ public class AnnotationActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("card", annotationCard);
+        setResult(1, resultIntent);
+        finish();
+    }
 }

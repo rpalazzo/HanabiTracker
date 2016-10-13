@@ -94,7 +94,7 @@
 
     <string name="about_text"><![CDATA[
         <html>
-            <p>Hanabi Tracker records clue information in the game Hanabi; it is not an implementation of the game itself.</p>
+            <p>Hanabi Tracker version 1.3.2.</p>
 
 <p><b>Title screen</b></p>
 <p>From the title screen, choose the number of cards and multicolor option for each game.</p>
