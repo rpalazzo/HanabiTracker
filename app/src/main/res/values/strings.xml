@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Hanabi Tracker</string>
 
+
+    <!-- MainActivity Strings -->
+
     <string name="no_cards_prompt">Number of cards</string>
     <string-array name="no_cards">
         <item>4 cards</item>
@@ -19,6 +22,11 @@
     <string name="about">About</string>
     <string name="action_settings">Settings</string>
 
+
+    <!-- TrackerActivity Strings -->
+
+    <string name="title_activity_tracker">TrackerActivity</string>
+
     <string name="delete">Remove</string>
 
     <string name="negative_info_prefix">NOT: </string>
@@ -35,23 +43,7 @@
     <string name="multicolor_symbol">M</string>
 
 
-    <string name="title_activity_tracker">TrackerActivity</string>
-    <string name="annotate_card">Annotate Card</string>
-    <string-array name="annotate_card_array">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>Red</item>
-        <item>Yellow</item>
-        <item>Blue</item>
-        <item>White</item>
-        <item>Green</item>
-        <item>Multicolor</item>
-    </string-array>
-
-    <!-- Strings related to Settings -->
+    <!-- SettingsActivity Strings -->
 
     <string name="negativeinfo_title">Negative Info</string>
     <string name="negativeinfo_summary">Negative Info Summary</string>
@@ -81,6 +73,8 @@
     <string name="title_activity_settings">Settings</string>
 
 
+    <!-- AnnotationActivity Strings -->
+
     <string name="annotation_title">Card Annotation</string>
 
     <string-array name="annotation_array">
@@ -92,9 +86,16 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
 
+
+    <!-- AboutActivity Strings -->
+
+    <string name="title_activity_annotation">AnnotationActivity</string>
+
     <string name="about_text"><![CDATA[
         <html>
             <p>Hanabi Tracker version 1.3.2.</p>
+
+<p>Hanabi Tracker is a memory aid used while playing the award-winning cooperative game Hanabi.</p>
 
 <p><b>Title screen</b></p>
 <p>From the title screen, choose the number of cards and multicolor option for each game.</p>
@@ -116,7 +117,12 @@
 
 <p>The Undo button will rollback clue or remove actions.  The Undo button may be used repeatedly to undo multiple actions.</p>
 
-<p>Long-press a card to display the Card Annotation screen.  This screen allows you to update the number or color attributes of a card without affecting the negative information of the other cards.  This option is useful when displaying negative info and you deduce information about a card without receiving a clue.<br></p>
+<p>Long-press a card to display the Card Annotation screen (see below).</p>
+
+
+<p><b>Card Annotation screen</b></p>
+<p>The Card Annotation screen allows you to update the positive or negative clue information for a specific card.  Unlike entering normal clues, annotating information will not affect the negative information of the other cards.  This option is useful when displaying negative info and you deduce information about a card without receiving a clue.  You may also set the negative information as you eliminate possibilities for a card.  Note that in "All colors" multicolor mode, you can toggle the multicolor indicator icon on and off by setting the multicolor state to unknown and no.<br>
+
 
 <p><b>Contact</b></p>
 You can report bugs and request enhancements at hanabitracker@gmail.com.
@@ -127,11 +133,10 @@ If you find this app useful, please rate it on <a href="https://play.google.com/
 <p><small><a href="https://github.com/jlhonora/multistatetogglebutton">Multistagetogglebutton</a> Copyright 2013-2015 Jose Honorato. http://honorato.org.  Licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</small></p>
 <p><small><a href="http://www.dafont.com/distro-bats.font">Distro Bats font</a> copyright 2008 Peter A Designer.  Licensed under <a href="http://www.skyehaven.net/blog/wp-content/plugins/eht-downloads/multimediaSprint_v1/2455_fonts/fancy_eroded/notes/Read_Dis%20Extinct.txt">limited freeware</a>.</small></p>
 
-
 <p><small>Hanabi Tracker app copyright R. Palazzo, 2016.</small></p>
 
 </html>]]>
     </string>
-    <string name="title_activity_annotation">AnnotationActivity</string>
+
 
 </resources>
