@@ -93,7 +93,7 @@
 
     <string name="about_text"><![CDATA[
         <html>
-            <p>Hanabi Tracker version 1.3.2.</p>
+            <p>Hanabi Tracker version 1.3.3.</p>
 
 <p>Hanabi Tracker is a memory aid used while playing the award-winning cooperative game Hanabi.</p>
 
@@ -121,7 +121,11 @@
 
 
 <p><b>Card Annotation screen</b></p>
-<p>The Card Annotation screen allows you to update the positive or negative clue information for a specific card.  Unlike entering normal clues, annotating information will not affect the negative information of the other cards.  This option is useful when displaying negative info and you deduce information about a card without receiving a clue.  You may also set the negative information as you eliminate possibilities for a card.  Note that in "All colors" multicolor mode, you can toggle the multicolor indicator icon on and off by setting the multicolor state to unknown and no.<br>
+<p>The Card Annotation screen allows you to update the positive or negative clue information for a card.
+Unlike entering normal clues, annotating card information will not affect the negative information of the other cards.
+This option is useful when displaying negative info and you deduce information about a card without receiving a clue.
+You may also set the negative information as you eliminate possibilities for a card.  Note that in "All colors"
+multicolor mode, you can toggle the multicolor indicator icon on and off by setting the multicolor state to unknown and no.<br>
 
 
 <p><b>Contact</b></p>
