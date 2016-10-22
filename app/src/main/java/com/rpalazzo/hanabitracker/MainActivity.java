@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Spinner;
+import org.honorato.multistatetogglebutton.MultiStateToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
         Log.v("MainActivity","Entering");
 
-        Spinner noCards = (Spinner) findViewById(R.id.CardsSpinner);
-        int nCards = noCards.getSelectedItemPosition();
+        MultiStateToggleButton mstbNoCards = (MultiStateToggleButton) this.findViewById(R.id.mstb_no_cards);
+        int nCards = mstbNoCards.getValue();
 
-        Spinner MulticolorMode = (Spinner) findViewById(R.id.MulticolorSpinner);
-        int nMulticolorMode = MulticolorMode.getSelectedItemPosition();
+        MultiStateToggleButton mstbMulticolorMode = (MultiStateToggleButton) this.findViewById(R.id.mstb_multicolor_mode);
+        int nMulticolorMode = mstbMulticolorMode.getValue();
 
         Intent intent = new Intent(this, TrackerActivity.class);
         intent.putExtra("nCards", nCards);

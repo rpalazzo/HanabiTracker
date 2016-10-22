@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:mstb="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -46,11 +47,11 @@
                 android:padding="5dp" >
 
                 <Space
-                    android:layout_weight=".1"/>
+                    android:layout_weight="3"/>
 
                 <TextView
                     android:id="@+id/no_cards_label"
-                    android:layout_weight=".2"
+                    android:layout_weight="30"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/no_cards_prompt"
@@ -58,11 +59,11 @@
                 </TextView>
 
                 <Space
-                    android:layout_weight=".1"/>
+                    android:layout_weight="14"/>
 
                 <TextView
                     android:id="@+id/multicolor_label"
-                    android:layout_weight=".2"
+                    android:layout_weight="50"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/multicolor_prompt"
@@ -70,7 +71,7 @@
                 </TextView>
 
                 <Space
-                    android:layout_weight=".1"/>
+                    android:layout_weight="3"/>
 
             </TableRow>
 
@@ -83,35 +84,35 @@
                 <Space
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight=".1"/>
+                    android:layout_weight="3"/>
 
-                <Spinner
-                    android:id="@+id/CardsSpinner"
-                    android:layout_weight=".2"
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_no_cards"
+                    android:layout_weight="30"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:entries="@array/no_cards"
-                    android:prompt="@string/no_cards_prompt" />
-
-                <Space
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight=".1"/>
-
-                <Spinner
-                    android:id="@+id/MulticolorSpinner"
-                    android:layout_weight=".2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:entries="@array/multicolor_mode"
-                    android:prompt="@string/multicolor_prompt"/>
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/no_cards" />
 
                 <Space
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight=".1"/>
+                    android:layout_weight="14"/>
+
+                <org.honorato.multistatetogglebutton.MultiStateToggleButton
+                    android:id="@+id/mstb_multicolor_mode"
+                    android:layout_weight="50"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    mstb:mstbPrimaryColor="@color/colorPrimary"
+                    mstb:mstbSecondaryColor="@color/white"
+                    mstb:values="@array/multicolor_mode" />
+
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"/>
 
             </TableRow>
         </TableLayout>
