@@ -318,7 +318,7 @@ public class TrackerActivity extends AppCompatActivity {
 
         if (requestCode == ANNOTATION_REQUEST) {
 
-            if (resultCode == 0) {
+            if (resultCode == AnnotationActivity.ReturnOK) {
                 pushCardstoUndoStack();
 
                 Card temp = new Card(MulticolorMode);

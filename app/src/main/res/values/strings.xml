@@ -79,12 +79,15 @@
 
     <string-array name="annotation_array">
         <item>Yes</item>
-        <item>Unknown</item>
+        <item>\?</item>
         <item>No</item>
     </string-array>
 
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+
+    <string name="multisuiterror">Multiple suits cannot be set to Yes.</string>
+    <string name="multirankerror">Multiple ranks cannot be set to Yes.</string>
 
 
     <!-- AboutActivity Strings -->

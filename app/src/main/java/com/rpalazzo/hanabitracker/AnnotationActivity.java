@@ -2,15 +2,9 @@ package com.rpalazzo.hanabitracker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-import android.widget.ToggleButton;
-
 import org.honorato.multistatetogglebutton.MultiStateToggleButton;
 
 
@@ -28,6 +22,14 @@ public class AnnotationActivity extends AppCompatActivity {
     private MultiStateToggleButton buttonWhite = null;
     private MultiStateToggleButton buttonGreen = null;
     private MultiStateToggleButton buttonMulti = null;
+
+    static final int MultiStateYes = 0;
+    static final int MultiStateUnknown = 1;
+    static final int MultiStateNo = 2;
+
+    static final int ReturnOK = 0;
+    static final int ReturnCancel = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,51 +52,51 @@ public class AnnotationActivity extends AppCompatActivity {
 
 
         // Initialize all buttons to "Unknown" state
-        button1.setValue(1);
-        button2.setValue(1);
-        button3.setValue(1);
-        button4.setValue(1);
-        button5.setValue(1);
-        buttonRed.setValue(1);
-        buttonYellow.setValue(1);
-        buttonBlue.setValue(1);
-        buttonWhite.setValue(1);
-        buttonGreen.setValue(1);
-        buttonMulti.setValue(1);
+        button1.setValue(MultiStateUnknown);
+        button2.setValue(MultiStateUnknown);
+        button3.setValue(MultiStateUnknown);
+        button4.setValue(MultiStateUnknown);
+        button5.setValue(MultiStateUnknown);
+        buttonRed.setValue(MultiStateUnknown);
+        buttonYellow.setValue(MultiStateUnknown);
+        buttonBlue.setValue(MultiStateUnknown);
+        buttonWhite.setValue(MultiStateUnknown);
+        buttonGreen.setValue(MultiStateUnknown);
+        buttonMulti.setValue(MultiStateUnknown);
 
         // Update buttons with Negative Info to "No" state
         if (annotationCard.getNotOne() == true) {
-            button1.setValue(2);
+            button1.setValue(MultiStateNo);
         }
         if (annotationCard.getNotTwo() == true) {
-            button2.setValue(2);
+            button2.setValue(MultiStateNo);
         }
         if (annotationCard.getNotThree() == true) {
-            button3.setValue(2);
+            button3.setValue(MultiStateNo);
         }
         if (annotationCard.getNotFour() == true) {
-            button4.setValue(2);
+            button4.setValue(MultiStateNo);
         }
         if (annotationCard.getNotFive() == true) {
-            button5.setValue(2);
+            button5.setValue(MultiStateNo);
         }
         if (annotationCard.getNotRed() == true) {
-            buttonRed.setValue(2);
+            buttonRed.setValue(MultiStateNo);
         }
         if (annotationCard.getNotYellow() == true) {
-            buttonYellow.setValue(2);
+            buttonYellow.setValue(MultiStateNo);
         }
         if (annotationCard.getNotBlue() == true) {
-            buttonBlue.setValue(2);
+            buttonBlue.setValue(MultiStateNo);
         }
         if (annotationCard.getNotWhite() == true) {
-            buttonWhite.setValue(2);
+            buttonWhite.setValue(MultiStateNo);
         }
         if (annotationCard.getNotGreen() == true) {
-            buttonGreen.setValue(2);
+            buttonGreen.setValue(MultiStateNo);
         }
         if (annotationCard.getNotMulticolor() == true) {
-            buttonMulti.setValue(2);
+            buttonMulti.setValue(MultiStateNo);
         }
 
 
@@ -102,19 +104,19 @@ public class AnnotationActivity extends AppCompatActivity {
         int rank = annotationCard.getRank();
         switch (rank) {
             case 1:
-                button1.setValue(0);
+                button1.setValue(MultiStateYes);
                 break;
             case 2:
-                button2.setValue(0);
+                button2.setValue(MultiStateYes);
                 break;
             case 3:
-                button3.setValue(0);
+                button3.setValue(MultiStateYes);
                 break;
             case 4:
-                button4.setValue(0);
+                button4.setValue(MultiStateYes);
                 break;
             case 5:
-                button5.setValue(0);
+                button5.setValue(MultiStateYes);
                 break;
         }
 
@@ -122,22 +124,22 @@ public class AnnotationActivity extends AppCompatActivity {
         Card.Color suit = annotationCard.getSuit();
         switch (suit) {
             case RED:
-                buttonRed.setValue(0);
+                buttonRed.setValue(MultiStateYes);
                 break;
             case YELLOW:
-                buttonYellow.setValue(0);
+                buttonYellow.setValue(MultiStateYes);
                 break;
             case BLUE:
-                buttonBlue.setValue(0);
+                buttonBlue.setValue(MultiStateYes);
                 break;
             case WHITE:
-                buttonWhite.setValue(0);
+                buttonWhite.setValue(MultiStateYes);
                 break;
             case GREEN:
-                buttonGreen.setValue(0);
+                buttonGreen.setValue(MultiStateYes);
                 break;
             case MULTICOLOR:
-                buttonMulti.setValue(0);
+                buttonMulti.setValue(MultiStateYes);
                 break;
         }
 
@@ -154,43 +156,44 @@ public class AnnotationActivity extends AppCompatActivity {
     public void onOkButton (View view) {
         Intent resultIntent = new Intent();
 
-        if (button1.getValue() == 2 ) { annotationCard.setNotOne(true); }
+        if (button1.getValue() == MultiStateNo ) { annotationCard.setNotOne(true); }
         else { annotationCard.setNotOne(false); }
 
-        if (button2.getValue() == 2 ) { annotationCard.setNotTwo(true); }
+        if (button2.getValue() == MultiStateNo ) { annotationCard.setNotTwo(true); }
         else { annotationCard.setNotTwo(false); }
 
-        if (button3.getValue() == 2 ) { annotationCard.setNotThree(true); }
+        if (button3.getValue() == MultiStateNo ) { annotationCard.setNotThree(true); }
         else { annotationCard.setNotThree(false); }
 
-        if (button4.getValue() == 2 ) { annotationCard.setNotFour(true); }
+        if (button4.getValue() == MultiStateNo ) { annotationCard.setNotFour(true); }
         else { annotationCard.setNotFour(false); }
 
-        if (button5.getValue() == 2 ) { annotationCard.setNotFive(true); }
+        if (button5.getValue() == MultiStateNo ) { annotationCard.setNotFive(true); }
         else { annotationCard.setNotFive(false); }
 
-        if (buttonRed.getValue() == 2 ) { annotationCard.setNotRed(true); }
+        if (buttonRed.getValue() == MultiStateNo ) { annotationCard.setNotRed(true); }
         else { annotationCard.setNotRed(false); }
 
-        if (buttonYellow.getValue() == 2 ) { annotationCard.setNotYellow(true); }
+        if (buttonYellow.getValue() == MultiStateNo ) { annotationCard.setNotYellow(true); }
         else { annotationCard.setNotYellow(false); }
 
-        if (buttonBlue.getValue() == 2 ) { annotationCard.setNotBlue(true); }
+        if (buttonBlue.getValue() == MultiStateNo ) { annotationCard.setNotBlue(true); }
         else { annotationCard.setNotBlue(false); }
 
-        if (buttonWhite.getValue() == 2 ) { annotationCard.setNotWhite(true); }
+        if (buttonWhite.getValue() == MultiStateNo ) { annotationCard.setNotWhite(true); }
         else { annotationCard.setNotWhite(false); }
 
-        if (buttonGreen.getValue() == 2 ) { annotationCard.setNotGreen(true); }
+        if (buttonGreen.getValue() == MultiStateNo ) { annotationCard.setNotGreen(true); }
         else { annotationCard.setNotGreen(false); }
 
-        if (buttonMulti.getValue() == 2 ) {
+        // If multicolor mode == All, toggle multicolor icon on/off if multicolor multistate is set to unknown/no
+        if (buttonMulti.getValue() == MultiStateNo ) {
             annotationCard.setNotMulticolor(true);
             if (annotationCard.getRainbowState() != Card.Rainbow.NA_RAINBOW) {
                 annotationCard.setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
             }
         }
-        else if (buttonMulti.getValue() == 1 && annotationCard.getRainbowState() != Card.Rainbow.NA_RAINBOW) {
+        else if (buttonMulti.getValue() == MultiStateUnknown && annotationCard.getRainbowState() != Card.Rainbow.NA_RAINBOW) {
             annotationCard.setNotMulticolor(false);
             if (annotationCard.getRainbowState() != Card.Rainbow.NA_RAINBOW) {
                 annotationCard.setRainbowState(Card.Rainbow.POSSIBLE_RAINBOW);
@@ -206,56 +209,56 @@ public class AnnotationActivity extends AppCompatActivity {
         int suitYesCount = 0;
         Card.Color suit = Card.Color.UNKNOWN;
 
-        if (button1.getValue() == 0){
+        if (button1.getValue() == MultiStateYes){
             rankYesCount++;
             rank = 1;
         }
-        if (button2.getValue() == 0){
+        if (button2.getValue() == MultiStateYes){
             rankYesCount++;
             rank = 2;
         }
-        if (button3.getValue() == 0){
+        if (button3.getValue() == MultiStateYes){
             rankYesCount++;
             rank = 3;
         }
-        if (button4.getValue() == 0){
+        if (button4.getValue() == MultiStateYes){
             rankYesCount++;
             rank = 4;
         }
-        if (button5.getValue() == 0){
+        if (button5.getValue() == MultiStateYes){
             rankYesCount++;
             rank = 5;
         }
-        if (buttonRed.getValue() == 0){
+        if (buttonRed.getValue() == MultiStateYes){
             suitYesCount++;
             suit = Card.Color.RED;
         }
-        if (buttonYellow.getValue() == 0){
+        if (buttonYellow.getValue() == MultiStateYes){
             suitYesCount++;
             suit = Card.Color.YELLOW;
         }
-        if (buttonBlue.getValue() == 0){
+        if (buttonBlue.getValue() == MultiStateYes){
             suitYesCount++;
             suit = Card.Color.BLUE;
         }
-        if (buttonWhite.getValue() == 0){
+        if (buttonWhite.getValue() == MultiStateYes){
             suitYesCount++;
             suit = Card.Color.WHITE;
         }
-        if (buttonGreen.getValue() == 0){
+        if (buttonGreen.getValue() == MultiStateYes){
             suitYesCount++;
             suit = Card.Color.GREEN;
         }
-        if (buttonMulti.getValue() == 0){
+        if (buttonMulti.getValue() == MultiStateYes){
             suitYesCount++;
             suit = Card.Color.MULTICOLOR;
         }
 
         if (rankYesCount >= 2){
-            Toast.makeText(getApplicationContext(), "Multiple ranks cannot be set to Yes.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.multirankerror, Toast.LENGTH_LONG).show();
         }
         else if (suitYesCount >= 2) {
-            Toast.makeText(getApplicationContext(), "Multiple suits cannot be set to Yes.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.multisuiterror, Toast.LENGTH_LONG).show();
         }
         else {
             annotationCard.setRank(rank);
@@ -265,7 +268,7 @@ public class AnnotationActivity extends AppCompatActivity {
             }
 
             resultIntent.putExtra("card", annotationCard);
-            setResult(0, resultIntent);
+            setResult(ReturnOK, resultIntent);
             finish();
         }
     }
@@ -273,7 +276,7 @@ public class AnnotationActivity extends AppCompatActivity {
     public void onCancelButton (View view) {
         Intent resultIntent = new Intent();
         resultIntent.putExtra("card", annotationCard);
-        setResult(1, resultIntent);
+        setResult(ReturnCancel, resultIntent);
         finish();
     }
 
@@ -282,7 +285,7 @@ public class AnnotationActivity extends AppCompatActivity {
         //super.onBackPressed();
         Intent resultIntent = new Intent();
         resultIntent.putExtra("card", annotationCard);
-        setResult(1, resultIntent);
+        setResult(ReturnCancel, resultIntent);
         finish();
     }
 }
