@@ -131,9 +131,9 @@ undo multiple actions.</p>
 <p>Access the Annotation Screen by long-pressing a card.  The Annotation screen allows you to
 update the positive or negative clue information for a card. Unlike entering normal clues,
 annotating a card will not affect the negative information of other cards.  Use the annotation screen
-when you deduce information about a card or can eliminate possibilities for a card.  In "All"
+when you deduce information about a card or can eliminate possibilities for a card.  In \"All\"
 multicolor mode, you can toggle the multicolor indicator icon on and off by setting the multicolor
-state to "?" and "No."<br>
+state to \"?\" and \"No.\"<br>
 
 
 <p><b>Contact</b></p>
@@ -148,10 +148,11 @@ Copyright 2013-2015 Jose Honorato. http://honorato.org.  Licensed under the <a h
 <p><small><a href="http://www.dafont.com/distro-bats.font">Distro Bats font</a> Copyright 2008
 Peter A Designer.  Licensed under <a href="http://www.skyehaven.net/blog/wp-content/plugins/eht-downloads/multimediaSprint_v1/2455_fonts/fancy_eroded/notes/Read_Dis%20Extinct.txt">limited freeware</a>.</small></p>
 
-<p><small>Hanabi Tracker app copyright R. Palazzo, 2016.<br>Version 1.3.3</small></p>
+<p><small>Hanabi Tracker app Copyright 2016-2017 R. Palazzo.<br>Version 1.4.1</small></p>
 
 </html>]]>
     </string>
 
+    <!-- firework icons are public domain from http://www.clker.com/clipart-blue-fireworks-1.html -->
 
 </resources>
