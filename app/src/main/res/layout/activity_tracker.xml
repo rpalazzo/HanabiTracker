@@ -28,8 +28,8 @@
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp" >
+                android:layout_height="fill_parent"
+                android:padding="1dp" >
 
                 <Button
                     android:id="@+id/button_del1"
@@ -78,7 +78,7 @@
                 android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:padding="5dp" >
+                android:padding="1dp" >
 
                 <ImageButton
                     android:id="@+id/button_card1"
@@ -136,8 +136,8 @@
             <TableRow
                 android:id="@+id/tableRow3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp" >
+                android:layout_height="fill_parent"
+                android:padding="1dp" >
 
                 <TextView
                     android:id="@+id/text_negative1"
