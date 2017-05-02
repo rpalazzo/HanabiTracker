@@ -11,12 +11,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +36,7 @@ public class TrackerActivity extends AppCompatActivity {
     private ArrayList<com.rpalazzo.hanabitracker.Card> cardArrayList = new ArrayList<com.rpalazzo.hanabitracker.Card>();
     private Stack<Card> undoStack = new Stack<Card>();
 
-
+    private LinearLayout background;
     private TableLayout tl;
     private ImageButton multicolorButton;
 
@@ -154,6 +153,7 @@ public class TrackerActivity extends AppCompatActivity {
         currentSelectionMode = SELECTION_MODE.NONE;
         clueSelection = CLUE_SELECTION.NONE;
 
+        background = (LinearLayout)findViewById(R.id.linearLayout1);
         buttonCard1 = (ImageButton)findViewById(R.id.button_card1);
         buttonCard2 = (ImageButton)findViewById(R.id.button_card2);
         buttonCard3 = (ImageButton)findViewById(R.id.button_card3);
@@ -176,41 +176,129 @@ public class TrackerActivity extends AppCompatActivity {
         buttonClueGreen = (ImageButton)findViewById(R.id.button_clueGreen);
         buttonClueMulticolor = (ImageButton)findViewById(R.id.button_clueMulticolor);
 
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String strbackgroundcolor = SP.getString("backgroundcolor_key", "NA");
+        if (strbackgroundcolor.equals("Black")) {
+            //background.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
+            background.setBackgroundColor(getResources().getColor(android.R.color.black));
+        }
 
         buttonCard1.setOnLongClickListener(new View.OnLongClickListener() {
            public boolean onLongClick(View v) {
-               longclick(0);
+               LongClickCard(0);
                return true;
            }
         });
 
         buttonCard2.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View v) {
-                longclick(1);
+                LongClickCard(1);
                 return true;
             }
         });
 
         buttonCard3.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View v) {
-                longclick(2);
+                LongClickCard(2);
                 return true;
             }
         });
 
         buttonCard4.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View v) {
-                longclick(3);
+                LongClickCard(3);
                 return true;
             }
         });
 
         buttonCard5.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View v) {
-                longclick(4);
+                LongClickCard(4);
                 return true;
             }
         });
+
+
+        String strnegativeclue = SP.getString("negativeclue_key", "NA");
+        if (strnegativeclue.equals("Enabled")) {
+
+            buttonClue1.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    LongClickClue(CLUE_SELECTION.ONE);
+                    return true;
+                }
+            });
+
+            buttonClue2.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    LongClickClue(CLUE_SELECTION.TWO);
+                    return true;
+                }
+            });
+
+            buttonClue3.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    LongClickClue(CLUE_SELECTION.THREE);
+                    return true;
+                }
+            });
+
+            buttonClue4.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    LongClickClue(CLUE_SELECTION.FOUR);
+                    return true;
+                }
+            });
+
+            buttonClue5.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    LongClickClue(CLUE_SELECTION.FIVE);
+                    return true;
+                }
+            });
+
+            buttonClueRed.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    LongClickClue(CLUE_SELECTION.RED);
+                    return true;
+                }
+            });
+
+            buttonClueYellow.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    LongClickClue(CLUE_SELECTION.YELLOW);
+                    return true;
+                }
+            });
+
+            buttonClueBlue.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    LongClickClue(CLUE_SELECTION.BLUE);
+                    return true;
+                }
+            });
+
+            buttonClueWhite.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    LongClickClue(CLUE_SELECTION.WHITE);
+                    return true;
+                }
+            });
+
+            buttonClueGreen.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    LongClickClue(CLUE_SELECTION.GREEN);
+                    return true;
+                }
+            });
+
+            buttonClueMulticolor.setOnLongClickListener(new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    LongClickClue(CLUE_SELECTION.MULTICOLOR);
+                    return true;
+                }
+            });
+        }
 
         Log.v("HanabiTracker", "Exiting TrackerActivity::OnCreate()");
 
@@ -298,8 +386,8 @@ public class TrackerActivity extends AppCompatActivity {
     }
 
 
-    void longclick(int i) {
-        Log.v("HanabiTracker", "Entering TrackerActivity::longclick()");
+    void LongClickCard(int i) {
+        Log.v("HanabiTracker", "Entering TrackerActivity::LongClickCard()");
 
         cleanupMulticardRainbow();
         annotatedCard = i;
@@ -308,7 +396,151 @@ public class TrackerActivity extends AppCompatActivity {
         intent.putExtra("card", cardArrayList.get(i));
         startActivityForResult(intent, ANNOTATION_REQUEST);
 
-        Log.v("HanabiTracker", "Exiting TrackerActivity::longclick()");
+        Log.v("HanabiTracker", "Exiting TrackerActivity::LongClickCard()");
+    }
+
+    void LongClickClue(CLUE_SELECTION clue) {
+        Log.v("HanabiTracker", "Entering TrackerActivity::LongClickClue()");
+
+        cleanupMulticardRainbow();
+        pushCardstoUndoStack();
+
+        // unselect any selected clues
+        clueSelection = CLUE_SELECTION.NONE;
+        currentSelectionMode = SELECTION_MODE.NONE;
+
+        //Before setting negative info, verify there are no conflicting clues already given
+        switch (clue) {
+            case ONE:
+                if (doesAnyCardHaveClue(1) == true) {
+                    errorFeedback();
+                    return;
+                }
+                break;
+            case TWO:
+                if (doesAnyCardHaveClue(2) == true) {
+                    errorFeedback();
+                    return;
+                }
+                break;
+            case THREE:
+                if (doesAnyCardHaveClue(3) == true) {
+                    errorFeedback();
+                    return;
+                }
+                break;
+            case FOUR:
+                if (doesAnyCardHaveClue(4) == true) {
+                    errorFeedback();
+                    return;
+                }
+                break;
+            case FIVE:
+                if (doesAnyCardHaveClue(5) == true) {
+                    errorFeedback();
+                    return;
+                }
+                break;
+            case RED:
+                if (doesAnyCardHaveClue(Card.Color.RED) == true) {
+                    errorFeedback();
+                    return;
+                }
+                break;
+            case YELLOW:
+                if (doesAnyCardHaveClue(Card.Color.YELLOW) == true) {
+                    errorFeedback();
+                    return;
+                }
+                break;
+            case BLUE:
+                if (doesAnyCardHaveClue(Card.Color.BLUE) == true) {
+                    errorFeedback();
+                    return;
+                }
+                break;
+            case WHITE:
+                if (doesAnyCardHaveClue(Card.Color.WHITE) == true) {
+                    errorFeedback();
+                    return;
+                }
+                break;
+            case GREEN:
+                if (doesAnyCardHaveClue(Card.Color.GREEN) == true) {
+                    errorFeedback();
+                    return;
+                }
+                break;
+            case MULTICOLOR:
+                if (doesAnyCardHaveClue(Card.Color.MULTICOLOR) == true) {
+                    errorFeedback();
+                    return;
+                }
+                break;
+        }
+
+
+        //iterate through cards setting negative info for each
+        for (Card card : cardArrayList) {
+            switch (clue) {
+                case ONE:
+                    card.setNotOne(true);
+                    break;
+                case TWO:
+                    card.setNotTwo(true);
+                    break;
+                case THREE:
+                    card.setNotThree(true);
+                    break;
+                case FOUR:
+                    card.setNotFour(true);
+                    break;
+                case FIVE:
+                    card.setNotFive(true);
+                    break;
+                case RED:
+                    card.setNotRed(true);
+                    break;
+                case YELLOW:
+                    card.setNotYellow(true);
+                    break;
+                case BLUE:
+                    card.setNotBlue(true);
+                    break;
+                case WHITE:
+                    card.setNotWhite(true);
+                    break;
+                case GREEN:
+                    card.setNotGreen(true);
+                    break;
+                case MULTICOLOR:
+                    card.setNotMulticolor(true);
+                    break;
+            }
+
+        }
+
+        paint();
+
+        Log.v("HanabiTracker", "Exiting TrackerActivity::LongClickClue()");
+    }
+
+    protected Boolean doesAnyCardHaveClue(int rank) {
+        for (Card card : cardArrayList) {
+            if (card.getRank() == rank) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected Boolean doesAnyCardHaveClue(Card.Color color) {
+        for (Card card : cardArrayList) {
+            if (card.getSuit() == color) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -847,6 +1079,15 @@ public class TrackerActivity extends AppCompatActivity {
             textViewNeg5.setText("");
         }
 
+        String strbackgroundcolor = SP.getString("backgroundcolor_key", "NA");
+        if (strbackgroundcolor.equals("Black")) {
+            textViewNeg1.setTextColor(getResources().getColor(android.R.color.white));
+            textViewNeg2.setTextColor(getResources().getColor(android.R.color.white));
+            textViewNeg3.setTextColor(getResources().getColor(android.R.color.white));
+            textViewNeg4.setTextColor(getResources().getColor(android.R.color.white));
+            textViewNeg5.setTextColor(getResources().getColor(android.R.color.white));
+        }
+
         buttonClue1.setImageResource(R.drawable.c1);
         buttonClue2.setImageResource(R.drawable.c2);
         buttonClue3.setImageResource(R.drawable.c3);
@@ -902,6 +1143,9 @@ public class TrackerActivity extends AppCompatActivity {
 
     public void errorFeedback() {
         Log.v("HanabiTracker", "Entering TrackerActivity::errorFeedback()");
+
+        //Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         long[] pattern = {0, 100, 100, 200};
         v.vibrate(pattern, -1);

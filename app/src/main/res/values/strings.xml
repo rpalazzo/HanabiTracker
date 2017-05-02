@@ -45,6 +45,7 @@
 
 
     <!-- SettingsActivity Strings -->
+    <string name="title_activity_settings">Settings</string>
 
     <string name="negativeinfo_title">Negative Info</string>
     <string name="negativeinfo_summary">Negative Info Summary</string>
@@ -71,8 +72,32 @@
         <item>Right to left</item>
         <item>Left to right</item>
     </string-array>
-    <string name="title_activity_settings">Settings</string>
 
+    <string name="negativeclue_title">Long Press to Clue None of a Type</string>
+    <string name="negativeclue_summary">Summary</string>
+    <string name="negativeclue_dialogtitle">Long press to clue no cards of that type</string>
+    <string name="negativeclue_default">Disabled</string>
+    <string-array name="negativeclue_entries">
+        <item>Enable</item>
+        <item>Disable</item>
+    </string-array>
+    <string-array name="negativeclue_values">
+        <item>Enabled</item>
+        <item>Disabled</item>
+    </string-array>
+
+    <string name="backgroundcolor_title">Background Color</string>
+    <string name="backgroundcolor_summary">Background Color Summary</string>
+    <string name="backgroundcolor_dialogtitle">Background color</string>
+    <string name="backgroundcolor_default">White</string>
+    <string-array name="backgroundcolor_entries">
+        <item>White</item>
+        <item>Black</item>
+    </string-array>
+    <string-array name="backgroundcolor_values">
+        <item>White</item>
+        <item>Black</item>
+    </string-array>
 
     <!-- AnnotationActivity Strings -->
 

@@ -39,5 +39,29 @@ public class SettingsActivity extends PreferenceActivity {
                 return true;
             }
         });
+
+        // Negative Clue
+        Preference negativeclue = findPreference("negativeclue_key");
+        negativeclue.setSummary(negativeclue.getSharedPreferences().
+                getString("negativeclue_key", getString(R.string.negativeclue_default)));
+
+        negativeclue.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                preference.setSummary(newValue.toString());
+                return true;
+            }
+        });
+
+        // Background Color
+        Preference backgroundcolor = findPreference("backgroundcolor_key");
+        backgroundcolor.setSummary(backgroundcolor.getSharedPreferences().
+                getString("backgroundcolor_key", getString(R.string.backgroundcolor_default)));
+
+        backgroundcolor.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                preference.setSummary(newValue.toString());
+                return true;
+            }
+        });
     }
 }

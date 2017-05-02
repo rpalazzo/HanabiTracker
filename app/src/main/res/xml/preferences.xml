@@ -19,4 +19,21 @@
         android:entryValues="@array/agedirection_values"
         android:defaultValue="@string/agedirection_default" />
 
+    <ListPreference
+        android:key="negativeclue_key"
+        android:title="@string/negativeclue_title"
+        android:summary="@string/negativeclue_summary"
+        android:dialogTitle="@string/negativeclue_dialogtitle"
+        android:entries="@array/negativeclue_entries"
+        android:entryValues="@array/negativeclue_values"
+        android:defaultValue="@string/negativeclue_default" />
+
+    <ListPreference
+        android:key="backgroundcolor_key"
+        android:title="@string/backgroundcolor_title"
+        android:summary="@string/backgroundcolor_summary"
+        android:dialogTitle="@string/backgroundcolor_dialogtitle"
+        android:entries="@array/backgroundcolor_entries"
+        android:entryValues="@array/backgroundcolor_values"
+        android:defaultValue="@string/backgroundcolor_default" />
 </PreferenceScreen>
