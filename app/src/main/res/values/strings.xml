@@ -18,6 +18,9 @@
         <item>All</item>
     </string-array>
 
+    <string name="sharedprefs_no_cards">sharedprefs_noCards</string>
+    <string name="sharedprefs_multicolor_mode">sharedprefs_multicolorMode</string>
+
     <string name="start">Start</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
@@ -73,9 +76,9 @@
         <item>Left to right</item>
     </string-array>
 
-    <string name="negativeclue_title">Long Press to Clue None of a Type</string>
+    <string name="negativeclue_title">Long Press Clue</string>
     <string name="negativeclue_summary">Summary</string>
-    <string name="negativeclue_dialogtitle">Long press to clue no cards of that type</string>
+    <string name="negativeclue_dialogtitle">Long press clue for no cards of that type</string>
     <string name="negativeclue_default">Disabled</string>
     <string-array name="negativeclue_entries">
         <item>Enable</item>
@@ -138,7 +141,13 @@ right corner until they are known to not be multicolored.</li></ul></p>
 receive a clue that your first card is red, then your other cards are necessarily not red.  This
 negative information can be hidden or displayed below each card.</p>
 
+<p>Long Press Clue allows you to give a clue like, \"You have no fives,\" by long pressing the 5
+clue button.  This type of clue is permitted in some interpretations of the rules. </p>
+
 <p>Cards Shift Direction controls which way the cards move after a card is removed from your hand.</p>
+
+<p>Background Color affects the background of the Play screen.  Setting the background color to
+Black may reduce power consumption.</p>
 
 <p><b>Play screen</b></p>
 <p>There are two ways to mark cards with clues: 1) Tap one or more cards and then tap a clue, or 2)
@@ -151,7 +160,6 @@ card is automatically added.</p>
 <p>The Undo button will rollback clue or remove actions.  The Undo button may be used repeatedly to
 undo multiple actions.</p>
 
-
 <p><b>Card Annotation screen</b></p>
 <p>Access the Annotation Screen by long-pressing a card.  The Annotation screen allows you to
 update the positive or negative clue information for a card. Unlike entering normal clues,
@@ -159,7 +167,6 @@ annotating a card will not affect the negative information of other cards.  Use 
 when you deduce information about a card or can eliminate possibilities for a card.  In \"All\"
 multicolor mode, you can toggle the multicolor indicator icon on and off by setting the multicolor
 state to \"?\" and \"No.\"<br>
-
 
 <p><b>Contact</b></p>
 You can report bugs and request enhancements at <a href="mailto:hanabitracker@gmail.com">hanabitracker@gmail.com</a>.
@@ -173,7 +180,7 @@ Copyright 2013-2015 Jose Honorato. http://honorato.org.  Licensed under the <a h
 <p><small><a href="http://www.dafont.com/distro-bats.font">Distro Bats font</a> Copyright 2008
 Peter A Designer.  Licensed under <a href="http://www.skyehaven.net/blog/wp-content/plugins/eht-downloads/multimediaSprint_v1/2455_fonts/fancy_eroded/notes/Read_Dis%20Extinct.txt">limited freeware</a>.</small></p>
 
-<p><small>Hanabi Tracker app Copyright 2016-2017 R. Palazzo.<br>Version 1.4.1</small></p>
+<p><small>Hanabi Tracker app Copyright 2016-2017 R. Palazzo.<br>Version 1.5</small></p>
 
 </html>]]>
     </string>

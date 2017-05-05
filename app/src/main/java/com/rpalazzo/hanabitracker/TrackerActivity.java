@@ -104,6 +104,12 @@ public class TrackerActivity extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
         Log.v("HanabiTracker", "Entering TrackerActivity::OnCreate()");
 
+        /*
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        Integer default_value = 0;
+        nCards = sharedPref.getInt(getString(R.string.sharedprefs_no_cards), default_value);
+        MulticolorMode = sharedPref.getInt(getString(R.string.sharedprefs_multicolor_mode), default_value);
+        */
 
         // Layout 4 or 5 cards;  if 4 cards the oldest column is never used, so collapse it
         nCards = getIntent().getIntExtra("nCards", 0);

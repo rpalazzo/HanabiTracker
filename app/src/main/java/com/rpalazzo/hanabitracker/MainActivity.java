@@ -5,23 +5,37 @@
 
 package com.rpalazzo.hanabitracker;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Spinner;
 import org.honorato.multistatetogglebutton.MultiStateToggleButton;
 
 public class MainActivity extends AppCompatActivity {
+
+    private MultiStateToggleButton mstbNoCards = null;
+    private MultiStateToggleButton mstbMulticolorMode = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MultiStateToggleButton mstbNoCards = (MultiStateToggleButton) this.findViewById(R.id.mstb_no_cards);
+        MultiStateToggleButton mstbMulticolorMode = (MultiStateToggleButton) this.findViewById(R.id.mstb_multicolor_mode);
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        Integer default_value = 0;
+        Integer noCards = sharedPref.getInt(getString(R.string.sharedprefs_no_cards), default_value);
+        mstbNoCards.setValue(noCards);
+        Integer multiMode = sharedPref.getInt(getString(R.string.sharedprefs_multicolor_mode), default_value);
+        mstbMulticolorMode.setValue(multiMode);
 
     }
 
@@ -61,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
         MultiStateToggleButton mstbMulticolorMode = (MultiStateToggleButton) this.findViewById(R.id.mstb_multicolor_mode);
         int nMulticolorMode = mstbMulticolorMode.getValue();
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(getString(R.string.sharedprefs_no_cards), nCards);
+        editor.putInt(getString(R.string.sharedprefs_multicolor_mode), nMulticolorMode);
+        editor.commit();
 
         Intent intent = new Intent(this, TrackerActivity.class);
         intent.putExtra("nCards", nCards);

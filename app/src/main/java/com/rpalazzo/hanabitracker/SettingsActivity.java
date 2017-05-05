@@ -9,6 +9,12 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 
+/* Touch the following files to add new Settings
+    app/java/SettingsActivity
+    app/res/xml/preferences.xml  (specifies order on screen)
+    app/res/values/string.xml
+ */
+
 public class SettingsActivity extends PreferenceActivity {
 
     @Override
@@ -28,24 +34,24 @@ public class SettingsActivity extends PreferenceActivity {
             }
         });
 
-        // Age Direction
-        Preference agedirection = findPreference("agedirection_key");
-        agedirection.setSummary(agedirection.getSharedPreferences().
-                getString("agedirection_key", getString(R.string.agedirection_default)));
-
-        agedirection.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                preference.setSummary(newValue.toString());
-                return true;
-            }
-        });
-
         // Negative Clue
         Preference negativeclue = findPreference("negativeclue_key");
         negativeclue.setSummary(negativeclue.getSharedPreferences().
                 getString("negativeclue_key", getString(R.string.negativeclue_default)));
 
         negativeclue.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                preference.setSummary(newValue.toString());
+                return true;
+            }
+        });
+
+        // Age Direction
+        Preference agedirection = findPreference("agedirection_key");
+        agedirection.setSummary(agedirection.getSharedPreferences().
+                getString("agedirection_key", getString(R.string.agedirection_default)));
+
+        agedirection.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 preference.setSummary(newValue.toString());
                 return true;
