@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MultiStateToggleButton mstbNoCards = (MultiStateToggleButton) this.findViewById(R.id.mstb_no_cards);
-        MultiStateToggleButton mstbMulticolorMode = (MultiStateToggleButton) this.findViewById(R.id.mstb_multicolor_mode);
+        mstbNoCards = (MultiStateToggleButton) this.findViewById(R.id.mstb_no_cards);
+        mstbMulticolorMode = (MultiStateToggleButton) this.findViewById(R.id.mstb_multicolor_mode);
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         Integer default_value = 0;
@@ -70,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
         Log.v("MainActivity","Entering");
 
-        MultiStateToggleButton mstbNoCards = (MultiStateToggleButton) this.findViewById(R.id.mstb_no_cards);
+        mstbNoCards = (MultiStateToggleButton) this.findViewById(R.id.mstb_no_cards);
         int nCards = mstbNoCards.getValue();
 
-        MultiStateToggleButton mstbMulticolorMode = (MultiStateToggleButton) this.findViewById(R.id.mstb_multicolor_mode);
+        mstbMulticolorMode = (MultiStateToggleButton) this.findViewById(R.id.mstb_multicolor_mode);
         int nMulticolorMode = mstbMulticolorMode.getValue();
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);

@@ -334,8 +334,13 @@ public class TrackerActivity extends AppCompatActivity {
 
             is.close();
             fis.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) { // includes FileNotFoundException which will occur first time app is run
+
+            for (int i = 0; i < 5; i++) {
+                Card temp = new Card(MulticolorMode);
+                cardArrayList.add(i, temp);
+            }
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
