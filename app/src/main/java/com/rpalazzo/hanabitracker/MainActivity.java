@@ -26,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         mstbNoCards = (MultiStateToggleButton) this.findViewById(R.id.mstb_no_cards);
         mstbMulticolorMode = (MultiStateToggleButton) this.findViewById(R.id.mstb_multicolor_mode);
@@ -36,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         mstbNoCards.setValue(noCards);
         Integer multiMode = sharedPref.getInt(getString(R.string.sharedprefs_multicolor_mode), default_value);
         mstbMulticolorMode.setValue(multiMode);
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
