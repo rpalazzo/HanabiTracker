@@ -37,10 +37,21 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         Integer default_value = 0;
-        Integer noCards = sharedPref.getInt(getString(R.string.sharedprefs_no_cards), default_value);
-        mstbNoCards.setValue(noCards);
-        Integer multiMode = sharedPref.getInt(getString(R.string.sharedprefs_multicolor_mode), default_value);
-        mstbMulticolorMode.setValue(multiMode);
+        Integer noCards = default_value;
+        Integer multiMode = default_value;
+
+        if (sharedPref != null) {
+            noCards = sharedPref.getInt(getString(R.string.sharedprefs_no_cards), default_value);
+            multiMode = sharedPref.getInt(getString(R.string.sharedprefs_multicolor_mode), default_value);
+        }
+
+        if (mstbNoCards != null && noCards != default_value){
+            mstbNoCards.setValue(noCards);
+        }
+
+        if (mstbMulticolorMode != null && multiMode != default_value) {
+            mstbMulticolorMode.setValue(multiMode);
+        }
     }
 
 
