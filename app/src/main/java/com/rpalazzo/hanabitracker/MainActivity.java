@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         int nMulticolorMode = mstbMulticolorMode.getValue();
 
         // Delete previous saved game state before starting new game
-        Toast.makeText(getApplicationContext(), "DEBUG MODE", Toast.LENGTH_SHORT).show();
         File file = new File(getFilesDir(), "hand");
         file.delete();
 
