@@ -113,6 +113,26 @@ public class Card implements java.io.Serializable {
         this.dirtyFlag = c.dirtyFlag;
     }
 
+    public void clear() {
+        rank = 0; //unknown
+        suit = Color.UNKNOWN;
+        isSelected = Boolean.FALSE;
+
+        isNotOne = Boolean.FALSE;
+        isNotTwo = Boolean.FALSE;
+        isNotThree = Boolean.FALSE;
+        isNotFour = Boolean.FALSE;
+        isNotFive = Boolean.FALSE;
+        isNotRed = Boolean.FALSE;
+        isNotYellow = Boolean.FALSE;
+        isNotBlue = Boolean.FALSE;
+        isNotWhite = Boolean.FALSE;
+        isNotGreen = Boolean.FALSE;
+        isNotMulticolor = Boolean.FALSE;
+        NegativeInfo = "";
+        rainbowState = Rainbow.POSSIBLE_RAINBOW;
+        dirtyFlag = Boolean.FALSE;
+    }
 
     public int getImageReference() {
 

@@ -56,6 +56,7 @@ public class TrackerActivity extends AppCompatActivity {
     private ImageButton buttonClueWhite;
     private ImageButton buttonClueGreen;
     private ImageButton buttonClueMulticolor;
+    private ImageButton buttonUndo;
 
     private TextView textViewNeg1;
     private TextView textViewNeg2;
@@ -181,6 +182,7 @@ public class TrackerActivity extends AppCompatActivity {
         buttonClueWhite = (ImageButton)findViewById(R.id.button_clueWhite);
         buttonClueGreen = (ImageButton)findViewById(R.id.button_clueGreen);
         buttonClueMulticolor = (ImageButton)findViewById(R.id.button_clueMulticolor);
+        buttonUndo = (ImageButton)findViewById(R.id.button_undo);
 
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         String strbackgroundcolor = SP.getString("backgroundcolor_key", "NA");
@@ -305,6 +307,13 @@ public class TrackerActivity extends AppCompatActivity {
                 }
             });
         }
+
+        buttonUndo.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                LongUndo();
+                return true;
+            }
+        });
 
         Log.v("HanabiTracker", "Exiting TrackerActivity::OnCreate()");
 
@@ -534,6 +543,15 @@ public class TrackerActivity extends AppCompatActivity {
         paint();
 
         Log.v("HanabiTracker", "Exiting TrackerActivity::LongClickClue()");
+    }
+
+    // Long press "Undo" to reset the game using the same game settings 
+    void LongUndo() {
+        pushCardstoUndoStack(); // allows a normal Undo to undo a LongUndo
+        for (int i = 0; i < 5; i++) {
+            cardArrayList.get(i).clear();
+        }
+        paint();
     }
 
     protected Boolean doesAnyCardHaveClue(int rank) {
