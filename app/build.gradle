@@ -20,13 +20,13 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.rpalazzo.hanabitracker"
         minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 14
-        versionName '1.5.3'
+        targetSdkVersion 33
+        versionCode 18
+        versionName '1.7'
         signingConfig signingConfigs.config
     }
     buildTypes {

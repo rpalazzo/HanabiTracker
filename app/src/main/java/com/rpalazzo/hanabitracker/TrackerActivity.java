@@ -103,7 +103,7 @@ public class TrackerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tracker);
 
         //Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
-        Log.v("HanabiTracker", "Entering TrackerActivity::OnCreate()");
+        Log.v("hanabitracker", "Entering TrackerActivity::OnCreate()");
 
         /*
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
@@ -315,7 +315,7 @@ public class TrackerActivity extends AppCompatActivity {
             }
         });
 
-        Log.v("HanabiTracker", "Exiting TrackerActivity::OnCreate()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::OnCreate()");
 
     }
 
@@ -325,7 +325,7 @@ public class TrackerActivity extends AppCompatActivity {
         super.onStart();
 
         //Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
-        Log.v("HanabiTracker", "Entering TrackerActivity::OnStart()");
+        Log.v("hanabitracker", "Entering TrackerActivity::OnStart()");
 
         onBackPressed = false;
 
@@ -356,7 +356,7 @@ public class TrackerActivity extends AppCompatActivity {
 
         paint();
 
-        Log.v("HanabiTracker", "Exiting TrackerActivity::OnStart()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::OnStart()");
     }
 
 
@@ -365,9 +365,9 @@ public class TrackerActivity extends AppCompatActivity {
         super.onBackPressed();
 
         //Toast.makeText(getApplicationContext(), "onBackPressed()", Toast.LENGTH_SHORT).show();
-        Log.v("HanabiTracker", "Entering TrackerActivity::OnBackPressed()");
+        Log.v("hanabitracker", "Entering TrackerActivity::OnBackPressed()");
         onBackPressed = true;
-        Log.v("HanabiTracker", "Exiting TrackerActivity::OnBackPressed()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::OnBackPressed()");
 
     }
 
@@ -376,7 +376,7 @@ public class TrackerActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         //Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
-        Log.v("HanabiTracker", "Entering TrackerActivity::OnStop()");
+        Log.v("hanabitracker", "Entering TrackerActivity::OnStop()");
 
         if (onBackPressed) {
             File file = new File(getFilesDir(), "hand");
@@ -385,12 +385,12 @@ public class TrackerActivity extends AppCompatActivity {
         else {
             PreserveHand();
         }
-        Log.v("HanabiTracker", "Exiting TrackerActivity::OnStop()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::OnStop()");
     }
 
 
     public void PreserveHand () {
-        Log.v("HanabiTracker", "Entering TrackerActivity::PerserveHand()");
+        Log.v("hanabitracker", "Entering TrackerActivity::PerserveHand()");
         try {
             FileOutputStream fos = openFileOutput("hand", Context.MODE_PRIVATE);
             ObjectOutputStream os = new ObjectOutputStream(fos);
@@ -402,12 +402,12 @@ public class TrackerActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.v("HanabiTracker", "Exiting TrackerActivity::PreserveHand()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::PreserveHand()");
     }
 
 
     void LongClickCard(int i) {
-        Log.v("HanabiTracker", "Entering TrackerActivity::LongClickCard()");
+        Log.v("hanabitracker", "Entering TrackerActivity::LongClickCard()");
 
         cleanupMulticardRainbow();
         annotatedCard = i;
@@ -416,11 +416,11 @@ public class TrackerActivity extends AppCompatActivity {
         intent.putExtra("card", cardArrayList.get(i));
         startActivityForResult(intent, ANNOTATION_REQUEST);
 
-        Log.v("HanabiTracker", "Exiting TrackerActivity::LongClickCard()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::LongClickCard()");
     }
 
     void LongClickClue(CLUE_SELECTION clue) {
-        Log.v("HanabiTracker", "Entering TrackerActivity::LongClickClue()");
+        Log.v("hanabitracker", "Entering TrackerActivity::LongClickClue()");
 
         cleanupMulticardRainbow();
         pushCardstoUndoStack();
@@ -542,7 +542,7 @@ public class TrackerActivity extends AppCompatActivity {
 
         paint();
 
-        Log.v("HanabiTracker", "Exiting TrackerActivity::LongClickClue()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::LongClickClue()");
     }
 
     // Long press "Undo" to reset the game using the same game settings 
@@ -575,7 +575,7 @@ public class TrackerActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        Log.v("HanabiTracker", "Entering TrackerActivity::onActivityResult()");
+        Log.v("hanabitracker", "Entering TrackerActivity::onActivityResult()");
 
         if (requestCode == ANNOTATION_REQUEST) {
 
@@ -590,7 +590,7 @@ public class TrackerActivity extends AppCompatActivity {
         }
         PreserveHand();
 
-        Log.v("HanabiTracker", "Exiting TrackerActivity::OnAcivityResult()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::OnAcivityResult()");
     }
 
 
@@ -601,7 +601,7 @@ public class TrackerActivity extends AppCompatActivity {
     public void onDel5(View view) { onDel(4); }
 
     private void onDel(int index) {
-        Log.v("HanabiTracker", "Entering TrackerActivity::OnDel()");
+        Log.v("hanabitracker", "Entering TrackerActivity::OnDel()");
 
         cleanupMulticardRainbow();
         pushCardstoUndoStack();
@@ -630,7 +630,7 @@ public class TrackerActivity extends AppCompatActivity {
         }
 
         paint();
-        Log.v("HanabiTracker", "Exiting TrackerActivity::OnDel()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::OnDel()");
     }
 
     public void onCard1(View view) { onCard(0); }
@@ -641,7 +641,7 @@ public class TrackerActivity extends AppCompatActivity {
 
     private void onCard(int index) {
 
-        Log.v("HanabiTracker", "Entering TrackerActivity::OnCard()");
+        Log.v("hanabitracker", "Entering TrackerActivity::OnCard()");
 
         // do NOT call cleanupMulticardRainbow here!!!
 
@@ -702,12 +702,12 @@ public class TrackerActivity extends AppCompatActivity {
          }
         paint();
 
-        Log.v("HanabiTracker", "Exiting TrackerActivity::OnCard()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::OnCard()");
     }
 
     // Called from OnCard();  A clue is selected and then one or more cards are clued.
     private void ApplyNumberToCard( int index, int n) {
-        Log.v("HanabiTracker", "Entering TrackerActivity::ApplyNumberToCard()");
+        Log.v("hanabitracker", "Entering TrackerActivity::ApplyNumberToCard()");
 
         // If the card number is unknown (0) or already set to this numbeer...
         if (cardArrayList.get(index).getRank() == 0 || cardArrayList.get(index).getRank() == n) {
@@ -727,13 +727,13 @@ public class TrackerActivity extends AppCompatActivity {
         }
         else { errorFeedback(); }
 
-        Log.v("HanabiTracker", "Exiting TrackerActivity::ApplyNumberToCard()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::ApplyNumberToCard()");
 
     }
 
     // Called from OnCard();  A clue is selected and then one or more cards are clued.
     private void ApplyColorToCard( int index, Card.Color color) {
-        Log.v("HanabiTracker", "Entering TrackerActivity::ApplyColorToCard()");
+        Log.v("hanabitracker", "Entering TrackerActivity::ApplyColorToCard()");
 
         // If the card suit is unknown or already set to this color...
         if (cardArrayList.get(index).getSuit() == Card.Color.UNKNOWN || (cardArrayList.get(index).getSuit() == color)) {
@@ -796,7 +796,7 @@ public class TrackerActivity extends AppCompatActivity {
         else {
             errorFeedback();
         }
-        Log.v("HanabiTracker", "Exiting TrackerActivity::ApplyColorToCard()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::ApplyColorToCard()");
     }
 
     public void onClueRed(View view) { OnClue(CLUE_SELECTION.RED); }
@@ -812,7 +812,7 @@ public class TrackerActivity extends AppCompatActivity {
     public void onClue5(View view) { OnClue(CLUE_SELECTION.FIVE); }
 
     private void OnClue(CLUE_SELECTION clue) {
-        Log.v("HanabiTracker", "Entering TrackerActivity::OnClue()");
+        Log.v("hanabitracker", "Entering TrackerActivity::OnClue()");
 
         cleanupMulticardRainbow();
 
@@ -1025,11 +1025,11 @@ public class TrackerActivity extends AppCompatActivity {
             currentSelectionMode = SELECTION_MODE.NONE;
         }
         paint();
-        Log.v("HanabiTracker", "Exiting TrackerActivity::OnClue()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::OnClue()");
     }
 
     public void applyColorToCard2(Card card, Card.Color color) {
-        Log.v("HanabiTracker", "Entering TrackerActivity::applyColorToCard2()");
+        Log.v("hanabitracker", "Entering TrackerActivity::applyColorToCard2()");
         if (card.getSuit() == Card.Color.UNKNOWN) {
             card.setSuit(color);
             //cardArrayList.get(i).setRainbowState(Card.Rainbow.POSSIBLE_RAINBOW);
@@ -1041,21 +1041,21 @@ public class TrackerActivity extends AppCompatActivity {
             card.setSuit(Card.Color.MULTICOLOR);
             card.setRainbowState(Card.Rainbow.IS_RAINBOW);
         }
-        Log.v("HanabiTracker", "Exiting TrackerActivity::applyColorToCard2()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::applyColorToCard2()");
     }
 
     public void pushCardstoUndoStack() {
-        Log.v("HanabiTracker", "Entering TrackerActivity::pushCardstoUndoStack()");
+        Log.v("hanabitracker", "Entering TrackerActivity::pushCardstoUndoStack()");
         Card temp;
         for (Card c : cardArrayList) {
             temp = new Card(c);
             undoStack.push(temp);
         }
-        Log.v("HanabiTracker", "Exiting TrackerActivity::pushCardstoUndoStack()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::pushCardstoUndoStack()");
     }
 
     public void onUndo(View view) {
-        Log.v("HanabiTracker", "Entering TrackerActivity::OnUndo()");
+        Log.v("hanabitracker", "Entering TrackerActivity::OnUndo()");
 
         cleanupMulticardRainbow();
 
@@ -1079,12 +1079,12 @@ public class TrackerActivity extends AppCompatActivity {
         }
 
         paint();
-        Log.v("HanabiTracker", "Exiting TrackerActivity::OnUndo()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::OnUndo()");
     }
 
 
     public void paint() {
-        Log.v("HanabiTracker", "Entering TrackerActivity::paint()");
+        Log.v("hanabitracker", "Entering TrackerActivity::paint()");
 
         buttonCard1.setImageResource(cardArrayList.get(0).getImageReference());
         buttonCard2.setImageResource(cardArrayList.get(1).getImageReference());
@@ -1167,11 +1167,11 @@ public class TrackerActivity extends AppCompatActivity {
                 buttonClueMulticolor.setImageResource(R.drawable.cms);
                 break;
         }
-        Log.v("HanabiTracker", "Exiting TrackerActivity::paint()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::paint()");
     }
 
     public void errorFeedback() {
-        Log.v("HanabiTracker", "Entering TrackerActivity::errorFeedback()");
+        Log.v("hanabitracker", "Entering TrackerActivity::errorFeedback()");
 
         //Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
 
@@ -1189,13 +1189,13 @@ public class TrackerActivity extends AppCompatActivity {
         }
 
         paint();
-        Log.v("HanabiTracker", "Exiting TrackerActivity::errorFeedback()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::errorFeedback()");
     }
 
     // This function must be called at the beginning of every button action except a Card,
     // i.e., after a color clue, number clue, delete, or undo
     private void cleanupMulticardRainbow() {
-        Log.v("HanabiTracker", "Entering TrackerActivity::cleanupMulticardRainbow()");
+        Log.v("hanabitracker", "Entering TrackerActivity::cleanupMulticardRainbow()");
         for (Card card : cardArrayList) {
             if (card.getRainbowState() == Card.Rainbow.PENDING_NOT_RAINBOW) {
                 card.setRainbowState(Card.Rainbow.IS_NOT_RAINBOW);
@@ -1205,7 +1205,7 @@ public class TrackerActivity extends AppCompatActivity {
                 card.setDirtyFlag(Boolean.FALSE);
             }
         }
-        Log.v("HanabiTracker", "Exiting TrackerActivity::cleanupMulticardRainbow()");
+        Log.v("hanabitracker", "Exiting TrackerActivity::cleanupMulticardRainbow()");
     }
 
 }
